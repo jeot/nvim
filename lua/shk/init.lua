@@ -1,0 +1,5 @@
+require("shk.set")
+require("shk.keymap")
+require("shk.lazy")
+require("shk.extra")
+--print("hello form shk")
