@@ -24,10 +24,10 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set('i', '<c-h>', function() vim.lsp.buf.signature_help() end, bufopts)
 	vim.keymap.set('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<cr>', bufopts)
 	vim.keymap.set('n', 'grn', ':lua vim.lsp.buf.rename()<cr>', bufopts)
-	vim.keymap.set('n', '<leader>le', ':lua vim.diagnostic.enable()<CR>', bufopts) -- enable lsp diagnosti
-	vim.keymap.set('n', '<leader>ld', ':lua vim.diagnostic.disable()<CR>', bufopts) -- disable lsp diagnosti
-	vim.keymap.set('n', '<space>vd', ':lua vim.diagnostic.open_float()<CR>', bufopts)
-	vim.keymap.set('n', '<space>fo', ':lua vim.lsp.buf.format()<CR>', bufopts)
+	vim.keymap.set('n', '<leader>lee', ':lua vim.diagnostic.enable()<CR>', bufopts) -- enable lsp diagnosti
+	vim.keymap.set('n', '<leader>ldd', ':lua vim.diagnostic.disable()<CR>', bufopts) -- disable lsp diagnosti
+	vim.keymap.set('n', '<leader>lf', ':lua vim.diagnostic.open_float()<CR>', bufopts)
+	vim.keymap.set('n', '<leader>fo', ':lua vim.lsp.buf.format()<CR>', bufopts)
 	-- vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
 	-- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
 end

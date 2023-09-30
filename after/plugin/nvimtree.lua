@@ -48,7 +48,6 @@ local function my_on_attach(bufnr)
 	vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
 	vim.keymap.set('n', 'l', api.node.open.preview, opts('Open Preview'))
 	vim.keymap.set('n', 'L', api.node.open.vertical, opts('Open: Vertical Split'))
-
 	vim.keymap.set('n', 'CD', api.tree.change_root_to_node,          opts('CD'))
 	-- vim.keymap.set('n', '<C-]>', api.tree.change_root_to_node,          opts('CD'))
 	--   vim.keymap.set('n', '<C-e>', api.node.open.replace_tree_buffer,     opts('Open: In Place'))
@@ -60,8 +59,8 @@ local function my_on_attach(bufnr)
 	--   vim.keymap.set('n', '<BS>',  api.node.navigate.parent_close,        opts('Close Directory'))
 	vim.keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
 	--   vim.keymap.set('n', '<Tab>', api.node.open.preview,                 opts('Open Preview'))
-	vim.keymap.set('n', '>', api.node.navigate.sibling.next, opts('Next Sibling'))
-	vim.keymap.set('n', '<', api.node.navigate.sibling.prev, opts('Previous Sibling'))
+	-- vim.keymap.set('n', '>', api.node.navigate.sibling.next, opts('Next Sibling'))
+	-- vim.keymap.set('n', '<', api.node.navigate.sibling.prev, opts('Previous Sibling'))
 	--   vim.keymap.set('n', '.',     api.node.run.cmd,                      opts('Run Command'))
 	--   vim.keymap.set('n', '-',     api.tree.change_root_to_parent,        opts('Up'))
 	vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
@@ -105,14 +104,17 @@ local function my_on_attach(bufnr)
 end
 
 -- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded = 1
+vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 nvim_tree.setup {
 	disable_netrw = true,
 	hijack_netrw = true,
-	update_cwd = true,
+	-- update_cwd = true,
 	on_attach = my_on_attach,
+	prefer_startup_root = false,
+	sync_root_with_cwd = true,
+	respect_buf_cwd = false,
 	update_focused_file = {
 		enable = true,
 		update_cwd = false,

@@ -27,6 +27,9 @@ end
 
 allkeymap('<C-z>', '<nop>')
 
+-- the most I use
+nkeymap('<leader>v', ':vs<cr><c-w>l')
+
 -- it's more personal
 nkeymap('<C-o>', '<C-o>zz')
 nkeymap('<C-i>', '<C-i>zz')
@@ -51,15 +54,14 @@ nkeymap('<leader>th', '<cmd>silent set hlsearch! hlsearch?<CR>') -- toggle highl
 nkeymap('<leader>tw', ':silent set wrap! wrap?<CR>') -- toggle wrap
 nkeymap('<leader>ts', ':silent set spell! spell?<CR>') -- toggle spell
 nkeymap('<space><space>', 'zA') -- toggle folding
-nkeymap('<leader>f"', '/".\\{-}"<cr>') -- search "" strings
-nkeymap('<leader>f\'', '/\'.\\{-}\'<cr>') -- search '' strings
+nkeymap('<leader>s"', '/".\\{-}"<cr>') -- search "" strings
+nkeymap('<leader>s\'', '/\'.\\{-}\'<cr>') -- search '' strings
 nkeymap('<leader>cd', '<cmd>cd %:h<cr>') -- change global directory to current buffer
 nkeymap('n', 'nzvzz') -- center find
 nkeymap('N', 'Nzvzz')
 nkeymap('<leader>u', '<cmd>UndotreeToggle<cr>')
 nkeymap('<leader>=', '=i{') -- auto indent inside {} block
 tkeymap('<Esc>', '<C-\\><C-n>')
---allkeymap('<c-i>', '<Esc>')
 
 -- copy/paste/replace/substitute
 vkeymap('p', 'P') -- while pasting on top of visual selection, hold the yanked register
@@ -136,7 +138,7 @@ nkeymap('ZZ', ':w <bar> Bdelete<CR>') -- save buffer and close, don't close wind
 -- tkeymap('<c-k>', '<c-\\><c-n><c-w>k')
 -- tkeymap('<c-l>', '<c-\\><c-n><c-w>l')
 nkeymap('<leader>w', '<c-w>') -- all windows operations
-tkeymap('<leader>w', '<c-\\><c-n><c-w>')
+-- tkeymap('<leader>w', '<c-\\><c-n><c-w>')
 nkeymap('<leader>wq', '<c-w>c') -- close window/split (safe)
 nkeymap('<leader>wn', '<c-w><c-w>') -- next window
 nkeymap('W', '<c-w><c-w>') -- next window
@@ -146,7 +148,6 @@ nkeymap("<leader>to", ":tabnew<CR>") -- open new tab with empty buffer
 nkeymap("<leader>tn", ":tabn<CR>") -- go to next tab
 nkeymap("<leader>tp", ":tabp<CR>") -- go to previous tab
 nkeymap("<leader>tq", ":tabclose<CR>") -- close current tab
-nkeymap('<leader>tt', ':tab split<cr>') -- create new tab with same buffer
 
 -- resize windows with arrows
 nkeymap("<C-Up>", ":resize +2<CR>")
@@ -161,6 +162,7 @@ nkeymap('<leader>oa', ':e ~/.config/alacritty/alacritty.yml<cr>')
 nkeymap('<leader>oh', ':e C:/Users/shk/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/myScript.ahk<cr>')
 nkeymap('<leader>op', ':e ~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>')
 nkeymap('<leader>ot', ':e ~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json<CR>')
+nkeymap('<leader>oP', ':e ~/AppData/Local/nvim/after/plugin/<CR>')
 
 -- navigation
 -- nkeymap('J', '}')
