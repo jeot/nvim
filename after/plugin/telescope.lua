@@ -17,9 +17,9 @@ telescope.setup({
 
 vim.keymap.set('n', '<leader>fi', function() builtin.find_files() end, {})
 vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>ff', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ no_ignore = true }) end, {})
+-- vim.keymap.set('n', '<leader>ff', function() builtin.find_files({ no_ignore = true }) end, {})
 vim.keymap.set('n', '<leader>fa',
 	function() builtin.find_files({ no_ignore = true, no_ignore_parent = true, hidden = true, }) end, {})
 -- vim.keymap.set('n', '<leader>fw', function() builtin.find_files({search_file=vim.fn.expand('<cword>')}) end, {})
@@ -33,3 +33,6 @@ vim.keymap.set('n', '<leader>fs', function()
 		previewer = false,
 	})
 end, { desc = '[/] Fuzzily search in current buffer' })
+
+
+vim.keymap.set('n', '<leader>oo', function() builtin.find_files({cwd="~/AppData/Local/nvim/"}) end, {})
