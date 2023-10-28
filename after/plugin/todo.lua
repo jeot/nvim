@@ -11,7 +11,7 @@ todo.setup({
 		TODO = { icon = " ", color = "info", alt = {"todo","Todo"} },
 		HACK = { icon = " ", color = "warning", alt = {"Hack"} },
 		WARN = { icon = " ", color = "warning", alt = {"WARNING","XXX","warn","Warn"} },
-		PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE","perf","Perf" } },
+		PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "optimize", "Optimize", "perf","Perf" } },
 		NOTE = { icon = " ", color = "hint", alt = { "INFO","Info","info","Note","note" } },
 		TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED","Test","test" } },
 	},

@@ -84,6 +84,7 @@ require("lazy").setup({
 	-- { 'nvim-treesitter/nvim-treesitter' , tag = "v0.9.1"},
 	{ 'nvim-treesitter/nvim-treesitter' },
 	'nvim-treesitter/nvim-treesitter-context',
+	'nvim-treesitter/nvim-treesitter-textobjects',
 
 	-- Find, Filter, Preview, Pick. (for files mostly)
 	{ 'nvim-telescope/telescope.nvim', commit = "776b509",                         dependencies = { 'nvim-lua/plenary.nvim' } },
