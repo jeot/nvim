@@ -24,8 +24,11 @@ lualine.setup {
 	options = {
 		icons_enabled = true,
 		theme = 'auto',
-		section_separators = { left = '', right = '' },
-		component_separators = { left = '', right = '' },
+		section_separators = { left = ' ', right = ' ' },
+		-- component_separators = { left = '|', right = '|' },
+		-- section_separators = { left = '', right = '' },
+		-- component_separators = { left = '', right = '' },
+		component_separators = { left = '', right = '' },
 		-- section_separators = { left = '', right = '' },
 		-- component_separators = { left = '', right = '' },
 		-- section_separators = { left = '', right = ''},
@@ -46,12 +49,13 @@ lualine.setup {
 	sections = {
 		lualine_a = { 'mode' },
 		-- lualine_b = {'branch', 'diff', 'diagnostics'},
-		lualine_b = { { 'branch', icon = { '', color = { fg = 'lime' } } },
-			{ 'diagnostics', symbols = { error = '', warn = '', hint = '', info = '' }
-			} },
+		lualine_b = {
+			{ 'branch', icon = { '', color = { fg = 'lime' } } },
+			{ 'diagnostics', symbols = { error = '', warn = '', hint = '', info = '' } }
+		},
 		-- lualine_b = {{'branch', icon = {'', color={fg='lime'}}}, 'diagnostics'},
 		lualine_c = { { 'filename', symbols = { readonly = '' } } },
-		lualine_x = { 'encoding', 'fileformat',
+		lualine_x = { 'searchcount', 'encoding', 'fileformat',
 			{ 'filetype', colored = true, icon_only = false, icon = { align = 'right' } } },
 		lualine_y = { 'progress' },
 		lualine_z = { 'location' }
