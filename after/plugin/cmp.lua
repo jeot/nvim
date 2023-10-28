@@ -64,8 +64,10 @@ cmp.setup({
 		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(2), {'i','c'}),
 		['<C-y>'] = cmp.mapping(cmp.mapping.complete(), {'i','c'}),
 		['<C-e>'] = cmp.mapping(cmp.mapping.abort(), {'i','c'}),
-		['<CR>'] = cmp.mapping(cmp.mapping.confirm({ select = true }), {'i'}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-		['<CR>'] = cmp.mapping(cmp.mapping.confirm({ select = false }), {'c'}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+		['<CR>'] = cmp.mapping({
+			i = cmp.mapping.confirm({ select = true }),
+			c = cmp.mapping.confirm({ select = false }),
+		}),
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
