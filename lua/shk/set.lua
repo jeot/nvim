@@ -63,7 +63,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.shortmess:append "c"
 vim.opt.showtabline = 2
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 -- set powershell for windwos
 vim.opt.shell = "powershell"
 vim.opt.shellcmdflag = "-Command"

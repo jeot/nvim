@@ -31,16 +31,12 @@ allkeymap('<C-z>', '<nop>')
 nkeymap('<leader>v', ':vs<cr><c-w>l')
 
 -- it's more personal
+ikeymap('<C-l>', '_')
 nkeymap('<C-o>', '<C-o>zz')
 nkeymap('<C-i>', '<C-i>zz')
-ikeymap('<c-v>', '<c-r>+') -- for windows clipboard
-nkeymap('<c-v>', '"+p')
-vkeymap('<c-c>', '"+y')
-nkeymap('<c-c>', '"+y')
 nkeymap('#', '^')
 nkeymap('s', '%') -- find the matching pair
 vkeymap('s', '%') -- find the matching pair
-nkeymap('Y', 'y$') -- yank to end if line
 nkeymap('U', '<c-r>') -- redo
 nkeymap('*', '*N:silent set hls<CR>') -- don't jump with * search
 nkeymap('<leader>;', 'q:k') -- show command history
@@ -62,20 +58,33 @@ nkeymap('N', 'Nzvzz')
 nkeymap('<leader>u', '<cmd>UndotreeToggle<cr>')
 nkeymap('<leader>=', '=i{') -- auto indent inside {} block
 tkeymap('<Esc>', '<C-\\><C-n>')
+nkeymap('vaa', 'ggVG') -- select all file
+
 
 -- copy/paste/replace/substitute
+nkeymap('Y', 'y$') -- yank to end if line
 vkeymap('p', 'P') -- while pasting on top of visual selection, hold the yanked register
-ikeymap('<c-p>', '<c-r>0') -- paste what was yanked before when writing
+nkeymap('<c-v>', '"+p')
+vkeymap('<c-v>', '"+P')
+ikeymap('<c-v>', '<c-r>+') -- for windows clipboard
+ckeymap('<c-v>', '<c-r>+')
+vkeymap('<c-c>', '"+y')
+nkeymap('<c-c>', '"+y')
+ikeymap('<c-p>', '<c-r>0') -- paste what was yanked when writing
 ckeymap('<c-p>', '<c-r>0')
-ckeymap('<c-v>', '<c-r>0')
-nkeymap('<c-p>', '"+p')
-vkeymap('<c-y>', '"+y')
-nkeymap('<c-y>', '"+y')
+-- nkeymap('<c-p>', '"+p')
+-- vkeymap('<c-y>', '"+y')
+-- nkeymap('<c-y>', '"+y')
+nkeymap('yaa', ':%y<cr>') -- yank all file
+nkeymap('daa', ':%d<cr>') -- yank all file
+nkeymap('<c-c>aa', ':%y+<cr>') -- yank all file
+nkeymap('<c-d>aa', ':%d+<cr>') -- yank all file
 nkeymap('<leader>p', '"0p') -- from yanked register
 nkeymap('<leader>P', '"0P')
 vkeymap('<leader>p', '"0p')
 vkeymap('<leader>P', '"0P')
-nkeymap('<leader>rw', 'viw"0P') -- replace word under cursor with yanked word
+nkeymap('<leader>ra', ':%d_<cr>p') -- replace file with yanked
+nkeymap('<leader>rw', 'viw"0P') -- replace word under cursor with yanked
 nkeymap('<leader>rl', '"hyiw:s/<c-r>h/<c-r>0/g<cr>') -- replace word under cursor in current line
 nkeymap('<leader>rr', 'dd"0P')
 nkeymap('<leader>ir', '"hyiw:.,$s/\\<<C-r>h\\>/<c-r>0/gc<cr>') -- interactive replace the word under cursor

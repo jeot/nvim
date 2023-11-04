@@ -41,8 +41,10 @@ local kind_icons = {
 	Operator = "",
 	TypeParameter = "",
 }
+
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 cmp.setup({
+
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
@@ -52,12 +54,15 @@ cmp.setup({
 			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 		end,
 	},
+
 	-- window = {
 	-- 	completion = cmp.config.window.bordered(),
 	-- 	documentation = cmp.config.window.bordered(),
 	-- },
 	-- mapping = cmp.mapping.preset.insert({
+
 	mapping = {
+		['<C-p>'] = cmp.mapping(function(fallback) fallback() end),
 		['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i','c'}),
 		['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i','c'}),
 		['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-2), {'i','c'}),
@@ -91,6 +96,7 @@ cmp.setup({
 			end
 		end, {'i','c'}),
 	},
+
 	-- formatting = {
 	-- 	fields = { "kind", "abbr", "menu" },
 	-- 	format = function(entry, vim_item)
@@ -107,6 +113,7 @@ cmp.setup({
 	-- 		return vim_item
 	-- 	end,
 	-- },
+
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		-- { name = 'vsnip' }, -- For vsnip users.
