@@ -10,7 +10,7 @@ local yank_group = augroup('HighlightYank', {})
 autocmd(
 	"BufWritePre", {
 		group = group,
-		pattern={"*.h","*.c", "*.cpp", "*.lua", "*.m", "*.md"},
+		pattern={"*.h", "*.c", "*.cpp", "*.lua", "*.m", "*.md", "*.rs"},
 		command = [[%s/\s\+$//e]],
 	}
 )
@@ -88,6 +88,33 @@ if vim.g.neovide then
 	vim.g.neovide_scale_factor = 1
 	vim.g.neovide_hide_mouse_when_typing = true
 end
+
+-- toggle listchars and eol
+local eol = false
+local function toggle_eol()
+	if (eol) then
+		eol = false
+		vim.opt.listchars:append { eol=' ' }
+		print("turn OFF eol char display")
+	else
+		eol = true
+		vim.opt.list = true
+		vim.opt.listchars:append { eol='﬋' }
+		print("turn ON eol char ﬋ display")
+	end
+end
+
+local function toggle_listchars()
+	if (vim.opt.list:get()) then
+		vim.opt.list = false
+		print("listchars OFF")
+	else
+		vim.opt.list = true
+		print("listchars ON")
+	end
+end
+vim.keymap.set('n', '<leader>te', toggle_eol, {})
+vim.keymap.set('n', '<leader>tl', toggle_listchars, {})
 
 --[[ -- starting directory
 autocmd("VimEnter", {

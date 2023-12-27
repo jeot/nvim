@@ -7,7 +7,7 @@ require 'nvim-treesitter.install'.compilers = { "gcc" }
 require 'nvim-treesitter.configs'.setup {
 	build = ":TSUpdate",
 	event = { "BufReadPre", "BufNewFile" },
-	ensure_installed = { "c", "cpp", "lua", "html" },
+	ensure_installed = { "c", "cpp", "matlab", "python", "c_sharp", "lua", "html" , "javascript", "make", "markdown", "rust"},
 	ignore_install = { },
 	incremental_selection = {
 		enable = true,

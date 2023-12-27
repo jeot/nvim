@@ -60,16 +60,16 @@ nkeymap('<leader>=', '=i{') -- auto indent inside {} block
 tkeymap('<Esc>', '<C-\\><C-n>')
 nkeymap('vaa', 'ggVG') -- select all file
 
-
 -- copy/paste/replace/substitute
 nkeymap('Y', 'y$') -- yank to end if line
 vkeymap('p', 'P') -- while pasting on top of visual selection, hold the yanked register
 nkeymap('<c-v>', '"+p')
 vkeymap('<c-v>', '"+P')
 ikeymap('<c-v>', '<c-r>+') -- for windows clipboard
-ckeymap('<c-v>', '<c-r>+')
+-- ckeymap('<c-v>', '<c-r>+')
 vkeymap('<c-c>', '"+y')
 nkeymap('<c-c>', '"+y')
+nkeymap('<c-c><c-c>', '"+yy')
 ikeymap('<c-p>', '<c-r>0') -- paste what was yanked when writing
 ckeymap('<c-p>', '<c-r>0')
 -- nkeymap('<c-p>', '"+p')
@@ -83,14 +83,14 @@ nkeymap('<leader>p', '"0p') -- from yanked register
 nkeymap('<leader>P', '"0P')
 vkeymap('<leader>p', '"0p')
 vkeymap('<leader>P', '"0P')
-nkeymap('<leader>ra', ':%d_<cr>p') -- replace file with yanked
-nkeymap('<leader>rw', 'viw"0P') -- replace word under cursor with yanked
-nkeymap('<leader>rl', '"hyiw:s/<c-r>h/<c-r>0/g<cr>') -- replace word under cursor in current line
+nkeymap('<leader>rw', 'viw"0P') -- replace current word with yanked
+nkeymap('<leader>rl', '"hyiw:s/<c-r>h/<c-r>0/gI<cr>') -- replace current word with yanked, in current line
+nkeymap('<leader>ra', '"hyiw:%s/<c-r>h/<c-r>0/gI<cr>') -- replace current word with yanked, in file
 nkeymap('<leader>rr', 'dd"0P')
-nkeymap('<leader>ir', '"hyiw:.,$s/\\<<C-r>h\\>/<c-r>0/gc<cr>') -- interactive replace the word under cursor
 nkeymap('<leader>YY', '"xyy') -- multi line yank by user
 nkeymap('<leader>yy', '"Xyy')
 nkeymap('<leader>ys', 'mx:let @x=""<cr>:%g//yank X<cr>:let @+=@x<cr>`x') -- multi line yank searched word
+nkeymap('<leader>cc', 'mx"hyyp`xjviw"0P') -- duplicate line, replace word under cursor with yanked register
 nkeymap('<leader>Y', '"xy')
 nkeymap('<leader>y', '"Xy')
 vkeymap('<leader>Y', '"xy')
@@ -101,10 +101,11 @@ vkeymap('<leader>D', '"xd')
 vkeymap('<leader>d', '"Xd')
 nkeymap('<leader>x', '"xp') -- paste multi
 nkeymap('<leader>YY', '"xyy')
-nkeymap('<leader>R', ':%s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
-vkeymap('<leader>R', ':s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
+-- nkeymap('<leader>R', ':%s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
+-- vkeymap('<leader>R', ':s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
 nkeymap('<leader><c-n>', ':%s/\\<<c-r><c-w>\\>//gIn<cr>') -- count keyword
 vkeymap('<leader><c-n>', ':s/\\<<c-r><c-w>\\>//gIn<cr>') -- count keyword
+nkeymap('<leader>R', '"hyiw:.,$s/\\<<C-r>h\\>/<c-r>0/gc<cr>') -- interactive replace the word under cursor
 
 vkeymap("<", "<gv") -- stay in indent mode (while in visual mode)
 vkeymap(">", ">gv") -- stay in indent mode (while in visual mode)
@@ -128,7 +129,7 @@ nkeymap('<leader>sf', ':w<cr>') -- save buffer
 nkeymap('<leader>ss', ':exe "mksession! " . v:this_session<CR>') -- save session
 nkeymap('<leader>so', ':w <bar> source %<cr>') -- save & source file
 nkeymap('<leader>sa', ':wall<CR>') -- save all files
-nkeymap('<leader>fp', '1<c-g>') -- print filepath
+nkeymap('<leader>ff', '1<c-g>') -- print filepath
 nkeymap('Q', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
 nkeymap('<leader>q', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
 nkeymap('<leader>fq', ':Bdelete!<CR>') -- force delete buffer
@@ -176,12 +177,12 @@ nkeymap('<leader>oP', ':e ~/AppData/Local/nvim/after/plugin/<CR>')
 -- navigation
 -- nkeymap('J', '}')
 -- nkeymap('K', '{')
-nkeymap('J', '<cmd>execute "keepjumps norm! " . v:count1 . "}"<CR>')
-nkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{"<CR>')
-vkeymap('J', '<cmd>execute "keepjumps norm! " . v:count1 . "}"<CR>')
-vkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{"<CR>')
-nkeymap('L', '<cmd>bnext<CR>')
-nkeymap('H', '<cmd>bprevious<CR>')
+nkeymap('J', '<cmd>execute "keepjumps norm! " . v:count1 . "}zz"<CR>')
+nkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{zz"<CR>')
+vkeymap('J', '<cmd>execute "keepjumps norm! " . v:count1 . "}zz"<CR>')
+vkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{zz"<CR>')
+nkeymap('<c-n>', '<cmd>bnext<CR>') -- previously L
+nkeymap('<c-p>', '<cmd>bprevious<CR>') -- previously H
 nkeymap('<c-u>', '<c-u>zz');
 nkeymap('<c-d>', '<c-d>zz');
 -- nkeymap('{', '?^\\s*{<CR>:nohl<CR>')

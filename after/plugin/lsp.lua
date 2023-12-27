@@ -3,7 +3,8 @@ local lsp = require('lsp-zero').preset({})
 lsp.ensure_installed({
 	'matlab_ls',
 	'lua_ls',
-	'clangd'
+	'clangd',
+	'rust_analyzer'
 })
 
 -- Use an on_attach function to only map the following keys
@@ -44,6 +45,16 @@ end
 
 lsp.on_attach(on_attach)
 
+-- require('lspconfig').rust_analyzer.setup()
+
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.html.setup {
+  capabilities = capabilities,
+}
+
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
@@ -61,6 +72,7 @@ require('lspconfig').clangd.setup({
 	}
 })
 
-lsp.set_sign_icons({ error = '', warn = '', hint = '', info = '' })
+-- lsp.set_sign_icons({ error = '', warn = '', hint = '', info = '' })
+lsp.set_sign_icons({ error = '•', warn = '•', hint = '•', info = '•' })
 
 lsp.setup()

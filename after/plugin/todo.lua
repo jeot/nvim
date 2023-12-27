@@ -3,17 +3,17 @@ local todo = require("todo-comments")
 todo.setup({
 	keywords = {
 		FIX = {
-			icon = " ",
+			icon = "",
 			color = "error",
 			alt = { "fix", "FIXME", "BUG", "FIXIT", "ISSUE" },
 			-- signs = false, -- configure signs for some keywords individually
 		},
-		TODO = { icon = " ", color = "info", alt = {"todo","Todo"} },
-		HACK = { icon = " ", color = "warning", alt = {"Hack"} },
-		WARN = { icon = " ", color = "warning", alt = {"WARNING","XXX","warn","Warn"} },
-		PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "optimize", "Optimize", "perf","Perf" } },
-		NOTE = { icon = " ", color = "hint", alt = { "INFO","Info","info","Note","note" } },
-		TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED","Test","test" } },
+		TODO = { icon = "", color = "info", alt = {"todo","Todo"} },
+		HACK = { icon = "", color = "warning", alt = {"Hack"} },
+		WARN = { icon = "", color = "warning", alt = {"WARNING","XXX","warn","Warn"} },
+		PERF = { icon = "", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "optimize", "Optimize", "perf","Perf" } },
+		NOTE = { icon = "", color = "hint", alt = { "INFO","Info","info","Note","note" } },
+		TEST = { icon = "", color = "test", alt = { "TESTING", "PASSED", "FAILED","Test","test" } },
 	},
 	highlight = {
 		multiline = false,             -- enable multine todo comments

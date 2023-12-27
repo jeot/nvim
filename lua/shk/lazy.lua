@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 
 	-- display sequence keys help
-	{ "folke/which-key.nvim",      config = true },
+	{ "folke/which-key.nvim", config = true },
 
 	-- measure startup time of neovim
 	"tweekmonster/startuptime.vim",
@@ -29,13 +29,18 @@ require("lazy").setup({
 	'rafi/awesome-vim-colorschemes', -- multiple colorscheme in one repository
 	--'folke/tokyonight.nvim',
 	--'marko-cerovac/material.nvim',
-	{ 'rose-pine/neovim',          as = 'rose-pine' },
+	{ 'rose-pine/neovim',     as = 'rose-pine' },
+	'sainnhe/sonokai',
 
 	-- status/tab/buffer line
 	{ 'nvim-lualine/lualine.nvim', dependencies = 'kyazdani42/nvim-web-devicons' },
 
-	-- git fugitive
+	-- git integration
 	'tpope/vim-fugitive',
+	{ 'lewis6991/gitsigns.nvim' },
+
+	-- tab adjustment
+	'tpope/vim-sleuth',
 
 	-- lsp
 	{
@@ -43,20 +48,20 @@ require("lazy").setup({
 		branch = 'v2.x',
 		dependencies = {
 			-- LSP Support
-			{ 'neovim/nvim-lspconfig' },          -- Required
-			{ 'williamboman/mason.nvim' },        -- Optional
+			{ 'neovim/nvim-lspconfig' },    -- Required
+			{ 'williamboman/mason.nvim' },  -- Optional
 			{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
 			-- Autocompletion
-			{ 'hrsh7th/nvim-cmp' },  -- Required
+			{ 'hrsh7th/nvim-cmp' }, -- Required
 			{ 'hrsh7th/cmp-nvim-lsp' }, -- Required
-			{ 'L3MON4D3/LuaSnip' },  -- Required
+			{ 'L3MON4D3/LuaSnip' }, -- Required
 		}
 	},
 
 	-- auto completion
 	"hrsh7th/cmp-buffer", -- buffer completions,
-	"hrsh7th/cmp-path",   -- path completions
+	"hrsh7th/cmp-path", -- path completions
 	"hrsh7th/cmp-cmdline", -- cmdline completions
 
 	-- code snippets (for luasnip)
@@ -69,7 +74,7 @@ require("lazy").setup({
 
 	-- delete/change/add parentheses/quotes/XML-tags/...
 	-- 'tpope/vim-surround',
-	{ 'kylechui/nvim-surround',         config = function() require("nvim-surround").setup() end },
+	{ 'kylechui/nvim-surround',    config = function() require("nvim-surround").setup() end },
 
 	-- unimpaired.vim: Pairs of handy bracket mappings
 	'tpope/vim-unimpaired',
@@ -87,7 +92,9 @@ require("lazy").setup({
 	'nvim-treesitter/nvim-treesitter-textobjects',
 
 	-- Find, Filter, Preview, Pick. (for files mostly)
-	{ 'nvim-telescope/telescope.nvim', commit = "776b509",                         dependencies = { 'nvim-lua/plenary.nvim' } },
+	{ 'nvim-telescope/telescope.nvim', commit = "776b509",                         dependencies = {
+		'nvim-lua/plenary.nvim' } },
+	{ 'Hajime-Suzuki/vuffers.nvim' },
 
 	-- quit buffer without closing window
 	'moll/vim-bbye',
@@ -99,6 +106,9 @@ require("lazy").setup({
 	{ 'akinsho/toggleterm.nvim',       version = "*" },
 
 	-- todo highlight
-	{ "folke/todo-comments.nvim",      dependencies = { "nvim-lua/plenary.nvim" }, }
+	{ "folke/todo-comments.nvim",      dependencies = { "nvim-lua/plenary.nvim" }, },
+
+	-- switch between header/source
+	'jakemason/ouroboros',
 
 })

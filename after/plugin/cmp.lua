@@ -62,13 +62,13 @@ cmp.setup({
 	-- mapping = cmp.mapping.preset.insert({
 
 	mapping = {
-		['<C-p>'] = cmp.mapping(function(fallback) fallback() end),
-		['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i','c'}),
-		['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i','c'}),
-		['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-2), {'i','c'}),
-		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(2), {'i','c'}),
-		['<C-y>'] = cmp.mapping(cmp.mapping.complete(), {'i','c'}),
-		['<C-e>'] = cmp.mapping(cmp.mapping.abort(), {'i','c'}),
+		['<C-p>'] = cmp.mapping(function(fallback) fallback() end, { 'i', 'c' }),
+		['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
+		['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
+		['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-2), { 'i', 'c' }),
+		['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(2), { 'i', 'c' }),
+		['<C-y>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+		['<C-e>'] = cmp.mapping(cmp.mapping.abort(), { 'i', 'c' }),
 		['<CR>'] = cmp.mapping({
 			i = cmp.mapping.confirm({ select = true }),
 			c = cmp.mapping.confirm({ select = false }),
@@ -85,7 +85,7 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, {'i','c'}),
+		end, { 'i', 'c' }),
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
@@ -94,7 +94,7 @@ cmp.setup({
 			else
 				fallback()
 			end
-		end, {'i','c'}),
+		end, { 'i', 'c' }),
 	},
 
 	-- formatting = {

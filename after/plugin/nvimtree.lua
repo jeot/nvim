@@ -136,7 +136,6 @@ nvim_tree.setup {
 	},
 	view = {
 		width = 30,
-		hide_root_folder = false,
 		side = "left",
 		preserve_window_proportions = false,
 		number = false,
@@ -159,16 +158,16 @@ nvim_tree.setup {
 	renderer = {
 		add_trailing = false,
 		group_empty = false,
-		highlight_git = false,
 		full_name = false,
-		highlight_opened_files = "none",
-		root_folder_modifier = ":~",
+		indent_width = 2,
+		root_folder_label = ":~:s?$?/..?",
 		indent_markers = {
 			enable = true,
 			icons = {
 				corner = "└ ",
 				edge = "│ ",
 				item = "│ ",
+				bottom = "─",
 				none = "  ",
 			},
 		},
