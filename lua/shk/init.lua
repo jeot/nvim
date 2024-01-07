@@ -1,5 +1,4 @@
 require("shk.set")
 require("shk.keymap")
-require("shk.lazy")
+require("shk.lazy") -- plugins settings are in "./lazyness/"
 require("shk.extra")
---print("hello form shk")

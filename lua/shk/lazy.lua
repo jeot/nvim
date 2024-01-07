@@ -12,6 +12,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	spec = "shk.lazyness",
+	change_detection = { notify = false }
+})
+
+--[[
+require("lazy").setup({
 
 	-- display sequence keys help
 	{ "folke/which-key.nvim", config = true },
@@ -112,3 +118,4 @@ require("lazy").setup({
 	'jakemason/ouroboros',
 
 })
+--]]

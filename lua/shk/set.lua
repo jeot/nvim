@@ -34,7 +34,7 @@ vim.opt.sidescrolloff = 9
 vim.opt.showmode = false
 vim.opt.modeline = false
 vim.opt.showcmd = true
-vim.opt.signcolumn ="yes:1" --"auto"
+vim.opt.signcolumn = "yes:1" --"auto"
 vim.opt.cmdheight = 1
 vim.opt.timeout = true
 vim.opt.timeoutlen = 3000
@@ -57,7 +57,7 @@ vim.opt.list = true
 --      ﰴ  ﲒ ﲖ  ﰲ 壟 ﬋     55555
 -- vim.opt.listchars = { tab = '• ', trail = '•', nbsp = '+', extends = '»' }
 -- vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '»' }
-vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = ''}
+vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '' }
 -- vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '', eol = '﬋' }
 vim.opt.sessionoptions = "blank,buffers,folds,help,tabpages,winsize,terminal,sesdir,unix,slash"
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"

@@ -26,12 +26,11 @@ local function ckeymap(key, map) -- Command?
 end
 
 allkeymap('<C-z>', '<nop>')
+nkeymap('J', '<nop>')
+nkeymap('K', '<nop>')
 
 -- the most I use
 nkeymap('<leader>v', ':vs<cr><c-w>l')
-
--- it's more personal
-ikeymap('<C-l>', '_')
 nkeymap('<C-o>', '<C-o>zz')
 nkeymap('<C-i>', '<C-i>zz')
 nkeymap('#', '^')
@@ -41,7 +40,6 @@ nkeymap('U', '<c-r>') -- redo
 nkeymap('*', '*N:silent set hls<CR>') -- don't jump with * search
 nkeymap('<leader>;', 'q:k') -- show command history
 nkeymap('<leader>/', 'q/k') -- show search history
-nkeymap('<leader>:', '@:') -- execute last command
 nkeymap('<leader>j', 'mz:join<cr>`z') -- join the lines, hold the cursor
 vkeymap('<leader>j', 'mz:join<cr>`z')
 nkeymap('<leader>k', 'kmz:join<cr>`z')
@@ -49,16 +47,29 @@ vkeymap('<leader>k', 'kmz:join<cr>`z')
 nkeymap('<leader>th', '<cmd>silent set hlsearch! hlsearch?<CR>') -- toggle highlight
 nkeymap('<leader>tw', ':silent set wrap! wrap?<CR>') -- toggle wrap
 nkeymap('<leader>ts', ':silent set spell! spell?<CR>') -- toggle spell
-nkeymap('<space><space>', 'zA') -- toggle folding
+nkeymap('<leader>z', 'zAzz') -- toggle folding
 nkeymap('<leader>s"', '/".\\{-}"<cr>') -- search "" strings
 nkeymap('<leader>s\'', '/\'.\\{-}\'<cr>') -- search '' strings
 nkeymap('<leader>cd', '<cmd>cd %:h<cr>') -- change global directory to current buffer
 nkeymap('n', 'nzvzz') -- center find
 nkeymap('N', 'Nzvzz')
-nkeymap('<leader>u', '<cmd>UndotreeToggle<cr>')
 nkeymap('<leader>=', '=i{') -- auto indent inside {} block
 tkeymap('<Esc>', '<C-\\><C-n>')
 nkeymap('vaa', 'ggVG') -- select all file
+ikeymap('<C-l>', '_')
+
+-- record/repeat macro
+vkeymap('Q', ':norm @q<CR>')
+vkeymap('.', ':norm .<CR>')
+
+vkeymap("<", "<gv") -- stay in indent mode (while in visual mode)
+vkeymap(">", ">gv") -- stay in indent mode (while in visual mode)
+
+-- moveing lines. surprisingly Alt works in nvim!
+-- nkeymap('<c-Down>', ':m .+1<CR>')
+-- nkeymap('<c-Up>', ':m .-2<CR>')
+-- vkeymap('<c-Down>', ":m '>+1<CR>gv")
+-- vkeymap('<c-Up>', ":m '<-2<CR>gv")
 
 -- copy/paste/replace/substitute
 nkeymap('Y', 'y$') -- yank to end if line
@@ -78,7 +89,6 @@ ckeymap('<c-p>', '<c-r>0')
 nkeymap('yaa', ':%y<cr>') -- yank all file
 nkeymap('daa', ':%d<cr>') -- yank all file
 nkeymap('<c-c>aa', ':%y+<cr>') -- yank all file
-nkeymap('<c-d>aa', ':%d+<cr>') -- yank all file
 nkeymap('<leader>p', '"0p') -- from yanked register
 nkeymap('<leader>P', '"0P')
 vkeymap('<leader>p', '"0p')
@@ -107,15 +117,6 @@ nkeymap('<leader><c-n>', ':%s/\\<<c-r><c-w>\\>//gIn<cr>') -- count keyword
 vkeymap('<leader><c-n>', ':s/\\<<c-r><c-w>\\>//gIn<cr>') -- count keyword
 nkeymap('<leader>R', '"hyiw:.,$s/\\<<C-r>h\\>/<c-r>0/gc<cr>') -- interactive replace the word under cursor
 
-vkeymap("<", "<gv") -- stay in indent mode (while in visual mode)
-vkeymap(">", ">gv") -- stay in indent mode (while in visual mode)
-
--- record/repeat macro
-nkeymap('<leader><CR>', '@q')
-vkeymap('<leader><CR>', ':norm @q<CR>')
-vkeymap('<leader>.', ':norm .<CR>')
-vkeymap('.', ':norm .<CR>')
-
 -- open some urls/files
 nkeymap('<leader>oy', ':!start chrome "<c-r>""<cr>') -- open url from yanked
 nkeymap('<leader>ou', '"uyiW:!start chrome \'<c-r>u\'<cr>') -- open url
@@ -130,11 +131,10 @@ nkeymap('<leader>ss', ':exe "mksession! " . v:this_session<CR>') -- save session
 nkeymap('<leader>so', ':w <bar> source %<cr>') -- save & source file
 nkeymap('<leader>sa', ':wall<CR>') -- save all files
 nkeymap('<leader>ff', '1<c-g>') -- print filepath
-nkeymap('Q', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
-nkeymap('<leader>q', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
-nkeymap('<leader>fq', ':Bdelete!<CR>') -- force delete buffer
 nkeymap('<leader>Q', ':qall<CR>') -- close all
 nkeymap('<leader>fQ', ':qall!<CR>') -- force close all
+nkeymap('<leader>q', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
+nkeymap('<leader>fq', ':Bdelete!<CR>') -- force delete buffer
 nkeymap('ZQ', ':bd!<cr>') -- close buffer without saving, don't close window
 nkeymap('ZZ', ':w <bar> Bdelete<CR>') -- save buffer and close, don't close window
 
@@ -154,10 +154,6 @@ nkeymap('<leader>wn', '<c-w><c-w>') -- next window
 nkeymap('W', '<c-w><c-w>') -- next window
 -- nkeymap('<leader>sp', "<C-w>v") -- split window vertically
 -- nkeymap('<leader>sh', "<C-w>s") -- split window horizontally
-nkeymap("<leader>to", ":tabnew<CR>") -- open new tab with empty buffer
-nkeymap("<leader>tn", ":tabn<CR>") -- go to next tab
-nkeymap("<leader>tp", ":tabp<CR>") -- go to previous tab
-nkeymap("<leader>tq", ":tabclose<CR>") -- close current tab
 
 -- resize windows with arrows
 nkeymap("<C-Up>", ":resize +2<CR>")
@@ -177,39 +173,24 @@ nkeymap('<leader>oP', ':e ~/AppData/Local/nvim/after/plugin/<CR>')
 -- navigation
 -- nkeymap('J', '}')
 -- nkeymap('K', '{')
-nkeymap('J', '<cmd>execute "keepjumps norm! " . v:count1 . "}zz"<CR>')
-nkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{zz"<CR>')
-vkeymap('J', '<cmd>execute "keepjumps norm! " . v:count1 . "}zz"<CR>')
-vkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{zz"<CR>')
+-- nkeymap('J', '<cmd>execute "keepjumps norm! " . v:count1 . "}zz"<CR>')
+-- nkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{zz"<CR>')
+-- vkeymap('J', '<cmd>execute "keepjumps norm! " . v:count1 . "}zz"<CR>')
+-- vkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{zz"<CR>')
 nkeymap('<c-n>', '<cmd>bnext<CR>') -- previously L
 nkeymap('<c-p>', '<cmd>bprevious<CR>') -- previously H
-nkeymap('<c-u>', '<c-u>zz');
-nkeymap('<c-d>', '<c-d>zz');
+nkeymap('<c-u>', '9kzz');
+nkeymap('<c-d>', '9jzz');
+vkeymap('<c-u>', '9k');
+vkeymap('<c-d>', '9j');
+-- nkeymap('<c-u>', '<c-u>zz');
+-- nkeymap('<c-d>', '<c-d>zz');
 -- nkeymap('{', '?^\\s*{<CR>:nohl<CR>')
 -- nkeymap('}', '/^\\s*}<CR>:nohl<CR>')
-
--- telescope & nvim-tree & harpoon
-nkeymap('<leader>fe', '<cmd>NvimTreeToggle<CR>')
 
 -- execute command line under cursor
 nkeymap('<leader>ee', ':silent exe "!" . getline(".")<CR>')
 nkeymap('<leader>ex', ':exe getline(".")<CR>')
 --nkeymap('<leader>et', ':exe "!tmux send -t .+ \'echo " . vim.fn.getline(".") . "\' Enter"<CR>')
 --nkeymap('<leader>E', ':exe "!tmux send -t .+ \'" . vim.fn.getline(".") . "\' Enter"<CR>')
-
--- moveing lines. surprisingly Alt works in nvim!
-nkeymap('<a-k>', ':m .-2<CR>')
-nkeymap('<a-j>', ':m .+1<CR>')
-vkeymap('<a-k>', ":m '<-2<CR>gv")
-vkeymap('<a-j>', ":m '>+1<CR>gv")
-
--- maybe someday in the future
---ikeymap(',', ',<c-g>u') -- insert additional undo points
---ikeymap('.', '.<c-g>u')
---ikeymap('!', '!<c-g>u')
---ikeymap('?', '?<c-g>u')
---
--- make toolchain
---nkeymap('<leader>ma', ':wa<cr> <bar> :make<cr>') -- make
---nkeymap('<leader>mu', ':wa<cr> <bar> :make ') -- make something
 
