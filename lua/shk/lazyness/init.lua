@@ -11,7 +11,7 @@ return {
 	{ 'numToStr/Comment.nvim', config = true, },
 
 	-- display sequence keys help
-	{ "folke/which-key.nvim", config = true },
+	{ "folke/which-key.nvim",  config = true },
 
 	-- measure startup time of neovim
 	"tweekmonster/startuptime.vim",
@@ -24,15 +24,27 @@ return {
 
 	-- delete/change/add parentheses/quotes/XML-tags/...
 	-- 'tpope/vim-surround',
-	{ 'kylechui/nvim-surround',    config = function() require("nvim-surround").setup() end },
+	{ 'kylechui/nvim-surround', config = function() require("nvim-surround").setup() end },
 
 	-- quit buffer without closing window
 	{ 'moll/vim-bbye' },
 
 	-- undo
-	{ 'mbbill/undotree', config = function() vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle) end },
+	{ 'mbbill/undotree',        config = function() vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle) end },
 
 	-- switch between header/source
-	{ 'jakemason/ouroboros', config = function () vim.keymap.set('n', '<leader>a', '<cmd>Ouroboros<CR>', { silent=true }) end },
+	{
+		'jakemason/ouroboros',
+		config = function()
+			vim.keymap.set('n', '<leader>a', '<cmd>Ouroboros<CR>',
+				{ silent = true })
+		end
+	},
 
+	{
+		"j-hui/fidget.nvim",
+		opts = {
+			-- options
+		},
+	}
 }

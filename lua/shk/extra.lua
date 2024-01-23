@@ -10,7 +10,7 @@ local yank_group = augroup('HighlightYank', {})
 autocmd(
 	"BufWritePre", {
 		group = group,
-		pattern={"*.h", "*.c", "*.cpp", "*.lua", "*.m", "*.md", "*.rs"},
+		pattern = {"*.h", "*.c", "*.cpp", "*.lua", "*.m", "*.md", "*.rs"},
 		command = [[%s/\s\+$//e]],
 	}
 )
@@ -56,7 +56,7 @@ function! s:ZoomToggle() abort
 	endif
 endfunction
 command! ZoomToggle call s:ZoomToggle()
-nnoremap <silent> <leader>z :ZoomToggle<CR>
+nnoremap <silent> <leader>we :ZoomToggle<CR>
 ]]
 
 -- vhdl tree-sitter test:

@@ -33,6 +33,7 @@ return {
               -- vim.cmd('Neotree float toggle reveal_force_cwd dir=' .. vim.fn.getcwd()) -- I use this one.
             end
           end,
+          ["/"] = "noop",
           ["o"] = { "open", nowait = true },
           ["oc"] = "noop",
           ["od"] = "noop",
@@ -45,6 +46,8 @@ return {
           ['<c-p>'] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
           ['h'] = { "close_node", nowait = true },
           ['l'] = { "open", nowait = true },
+          ['f'] = { "fuzzy_finder", nowait = true },
+          ['s'] = { "filter_on_submit", nowait = true },
           -- ['E'] = function() vim.api.nvim_exec('Neotree focus filesystem left', true) end,
           -- ['B'] = function() vim.api.nvim_exec('Neotree focus buffers left', true) end,
           -- ['g'] = function() vim.api.nvim_exec('Neotree focus git_status left', true) end,

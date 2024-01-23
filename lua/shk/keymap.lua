@@ -28,6 +28,7 @@ end
 allkeymap('<C-z>', '<nop>')
 nkeymap('J', '<nop>')
 nkeymap('K', '<nop>')
+nkeymap('<space><space>', '<nop>')
 
 -- the most I use
 nkeymap('<leader>v', ':vs<cr><c-w>l')
