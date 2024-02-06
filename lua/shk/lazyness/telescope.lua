@@ -27,7 +27,8 @@ local function config()
 	}
 
 	-- set keymaps
-	vim.keymap.set('n', '<leader>i', builtin.buffers, {})
+	vim.keymap.set('n', '<leader>b', builtin.buffers, {})
+	vim.keymap.set('n', '<leader>i', function() builtin.find_files() end, {})
 	vim.keymap.set('n', '<leader>fi', function() builtin.find_files() end, {})
 	vim.keymap.set('n', '<leader>fg', builtin.git_files, {})
 	vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})

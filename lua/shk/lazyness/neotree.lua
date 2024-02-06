@@ -1,7 +1,7 @@
 local function keymaps()
   vim.keymap.set('n', '<leader>fe', ':Neotree toggle filesystem left<CR>', {})
-  vim.keymap.set('n', '<leader>fd', ":Neotree float reveal_file=<cfile> reveal_force_cwd<cr>")
-  vim.keymap.set('n', '<leader>b', ":Neotree toggle show buffers right<cr>")
+  -- vim.keymap.set('n', '<leader>fd', ":Neotree float reveal_file=<cfile> reveal_force_cwd<cr>")
+  -- vim.keymap.set('n', '<leader>b', ":Neotree toggle show buffers right<cr>")
   -- vim.keymap.set('n', '<leader>/', ":Neotree toggle current reveal_force_cwd<cr>")
   -- vim.keymap.set('n', '<leader>|', ":Neotree reveal<cr>")
   -- vim.keymap.set('n', '<leader>gs', ":Neotree float git_status<cr>")
@@ -20,6 +20,10 @@ return {
     keymaps()
     -- inside neotree
     require('neo-tree').setup({
+      source_selector = {
+        winbar = true,
+        statusline = false,
+      },
       window = {
         mappings = {
           ['O'] = function(state)
@@ -48,13 +52,32 @@ return {
           ['l'] = { "open", nowait = true },
           ['f'] = { "fuzzy_finder", nowait = true },
           ['s'] = { "filter_on_submit", nowait = true },
+          ['v'] = { "system_open", nowait = true },
+          ['E'] = { "system_explorer", nowait = true },
           -- ['E'] = function() vim.api.nvim_exec('Neotree focus filesystem left', true) end,
           -- ['B'] = function() vim.api.nvim_exec('Neotree focus buffers left', true) end,
           -- ['g'] = function() vim.api.nvim_exec('Neotree focus git_status left', true) end,
         },
       },
+      commands = {
+        system_explorer = function(state)
+          local node = state.tree:get_node()
+          local path = node.path
+          -- print(path)
+          vim.api.nvim_exec("call jobstart('Explorer.exe .')", true)
+        end,
+        system_open = function(state)
+          local node = state.tree:get_node()
+          local path = node.path
+          -- macOs: open file in default application in the background.
+          -- vim.fn.jobstart({ "xdg-open", "-g", path }, { detach = true })
+          -- Linux: open file in default application
+          -- vim.fn.jobstart({ "xdg-open", path }, { detach = true })
+          -- Windows: open file in default application
+          print(path)
+          vim.fn.jobstart(path, { detach = true })
+        end,
+      },
     })
   end
 }
-
-

@@ -184,6 +184,12 @@ nkeymap('<c-u>', '9kzz');
 nkeymap('<c-d>', '9jzz');
 vkeymap('<c-u>', '9k');
 vkeymap('<c-d>', '9j');
+nkeymap('gl', '$');
+nkeymap('gh', '^');
+vkeymap('gl', '$');
+vkeymap('gh', '^');
+nkeymap('ge', 'G');
+vkeymap('ge', 'G');
 -- nkeymap('<c-u>', '<c-u>zz');
 -- nkeymap('<c-d>', '<c-d>zz');
 -- nkeymap('{', '?^\\s*{<CR>:nohl<CR>')

@@ -7,14 +7,14 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set('n', 'gd', ':lua vim.lsp.buf.definition()<cr>zvzz', bufopts)
-	vim.keymap.set('n', 'gh', ':lua vim.lsp.buf.hover()<cr>', bufopts)
+	vim.keymap.set('n', 'K', ':lua vim.lsp.buf.hover()<cr>', bufopts)
 	vim.keymap.set('n', 'gw', ':lua vim.lsp.buf.workspace_symbol()<cr>', bufopts)
 	vim.keymap.set('n', 'grr', ':lua vim.lsp.buf.references()<cr>', bufopts)
 	vim.keymap.set('n', 'go', ':lua vim.lsp.buf.type_definition()<cr>zvzz', bufopts)
 	vim.keymap.set('n', ']d', ':lua vim.diagnostic.goto_next()<cr>zvzz', bufopts)
 	vim.keymap.set('n', '[d', ':lua vim.diagnostic.goto_prev()<cr>zvzz', bufopts)
-	vim.keymap.set('n', ')', ':lua vim.diagnostic.goto_next()<cr>zvzz', bufopts)
-	vim.keymap.set('n', '(', ':lua vim.diagnostic.goto_prev()<cr>zvzz', bufopts)
+	-- vim.keymap.set('n', ')', ':lua vim.diagnostic.goto_next()<cr>zvzz', bufopts)
+	-- vim.keymap.set('n', '(', ':lua vim.diagnostic.goto_prev()<cr>zvzz', bufopts)
 	vim.keymap.set('i', '<c-h>', function() vim.lsp.buf.signature_help() end, bufopts)
 	vim.keymap.set('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<cr>', bufopts)
 	vim.keymap.set('n', 'grn', ':lua vim.lsp.buf.rename()<cr>', bufopts)
@@ -78,24 +78,6 @@ local function lsp_config()
 
 end
 
--- return {
--- 	{
--- 		'VonHeikemen/lsp-zero.nvim',
--- 		config = config_function,
--- 		branch = 'v2.x',
--- 		dependencies = {
--- 			-- LSP Support
--- 			{ 'neovim/nvim-lspconfig' },    -- Required
--- 			{ 'williamboman/mason.nvim' },  -- Optional
--- 			{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
--- 			-- Autocompletion
--- 			{ 'hrsh7th/nvim-cmp' }, -- Required
--- 			{ 'hrsh7th/cmp-nvim-lsp' }, -- Required
--- 			{ 'L3MON4D3/LuaSnip' }, -- Required
--- 		},
--- 	},
--- }
---
 return {
 	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', config = lsp_config},
 	{'williamboman/mason.nvim'},
