@@ -46,7 +46,15 @@ local function config()
 			previewer = false,
 		})
 	end, { desc = '[/] Fuzzily search in current buffer' })
-	vim.keymap.set('n', '<leader>oo', function() builtin.find_files({ cwd = "~/AppData/Local/nvim/" }) end, {})
+
+	if (vim.loop.os_uname().sysname == 'Linux') then
+		vim.keymap.set('n', '<leader>oo', function() builtin.find_files({ cwd = "~/.config/nvim/" }) end, {})
+	else
+		vim.keymap.set('n', '<leader>oo', function() builtin.find_files({ cwd = "~/AppData/Local/nvim/" }) end, {})
+	end
+
+
+
 end
 
 return {
