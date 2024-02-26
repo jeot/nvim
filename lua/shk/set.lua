@@ -79,7 +79,3 @@ vim.opt.shellquote = ''
 vim.opt.shellxquote = ''
 vim.opt.shellredir = '| Out-File -Encoding UTF8 %s'
 vim.opt.shellpipe = '| Out-File -Encoding UTF8 %s'
--- set font if gui is available
-if vim.fn.has('gui') then
-	vim.cmd [[ set guifont=Mononoki\ NF:h17 ]]
-end
