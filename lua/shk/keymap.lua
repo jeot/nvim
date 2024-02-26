@@ -26,9 +26,16 @@ local function ckeymap(key, map) -- Command?
 end
 
 allkeymap('<C-z>', '<nop>')
+nkeymap('<C-;>', '<Esc>')
+xkeymap('<C-;>', '<Esc>')
+vkeymap('<C-;>', '<Esc>')
+ckeymap('<C-;>', '<Esc>')
+ikeymap('<C-;>', '<Esc>')
 nkeymap('J', '<nop>')
 nkeymap('K', '<nop>')
 nkeymap('<space><space>', '<nop>')
+-- ikeymap('jk', '<Esc>')
+-- ikeymap('kj', '<Esc>')
 
 -- the most I use
 nkeymap('<leader>v', ':vs<cr><c-w>l')
@@ -165,7 +172,7 @@ nkeymap("<C-Right>", ":vertical resize +2<CR>")
 -- quick file access
 nkeymap('<leader>oi', ':e ~/AppData/Local/nvim/init.lua<cr>')
 nkeymap('<leader>ok', ':e ~/AppData/Local/nvim/lua/shk/keymap.lua<cr>')
-nkeymap('<leader>oa', ':e ~/.config/alacritty/alacritty.yml<cr>')
+nkeymap('<leader>oa', ':e ~/.config/alacritty/alacritty.toml<cr>')
 nkeymap('<leader>oh', ':e C:/Users/shk/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/myScript.ahk<cr>')
 nkeymap('<leader>op', ':e ~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>')
 nkeymap('<leader>ot', ':e ~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json<CR>')
@@ -180,18 +187,18 @@ nkeymap('<leader>oP', ':e ~/AppData/Local/nvim/after/plugin/<CR>')
 -- vkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{zz"<CR>')
 nkeymap('<c-n>', '<cmd>bnext<CR>') -- previously L
 nkeymap('<c-p>', '<cmd>bprevious<CR>') -- previously H
-nkeymap('<c-u>', '9kzz');
-nkeymap('<c-d>', '9jzz');
-vkeymap('<c-u>', '9k');
-vkeymap('<c-d>', '9j');
-nkeymap('gl', '$');
-nkeymap('gh', '^');
-vkeymap('gl', '$');
-vkeymap('gh', '^');
-nkeymap('ge', 'G');
-vkeymap('ge', 'G');
--- nkeymap('<c-u>', '<c-u>zz');
--- nkeymap('<c-d>', '<c-d>zz');
+nkeymap('<c-u>', '9kzz')
+nkeymap('<c-d>', '9jzz')
+vkeymap('<c-u>', '9k')
+vkeymap('<c-d>', '9j')
+nkeymap('gl', '$')
+nkeymap('gh', '^')
+vkeymap('gl', '$')
+vkeymap('gh', '^')
+nkeymap('ge', 'G')
+vkeymap('ge', 'G')
+-- nkeymap('<c-u>', '<c-u>zz')
+-- nkeymap('<c-d>', '<c-d>zz')
 -- nkeymap('{', '?^\\s*{<CR>:nohl<CR>')
 -- nkeymap('}', '/^\\s*}<CR>:nohl<CR>')
 
