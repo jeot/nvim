@@ -10,7 +10,8 @@ local yank_group = augroup('HighlightYank', {})
 autocmd(
 	"BufWritePre", {
 		group = group,
-		pattern = {"*.h", "*.c", "*.cpp", "*.lua", "*.m", "*.md", "*.rs"},
+		pattern = {"*.h", "*.c", "*.cpp", "*.lua", "*.m", "*.md", "*.rs",
+				"*.js", "*.ts", "*.jsx", "*.tsx", "*.css", "*.html"},
 		command = [[%s/\s\+$//e]],
 	}
 )
@@ -115,6 +116,21 @@ local function toggle_listchars()
 end
 vim.keymap.set('n', '<leader>te', toggle_eol, {})
 vim.keymap.set('n', '<leader>tl', toggle_listchars, {})
+
+-- toggle diff mode
+local diffmode = false
+local function toggle_diffmode()
+	if (diffmode) then
+		diffmode = false
+		vim.cmd("windo diffthis")
+		print("diff mode on")
+	else
+		diffmode = true
+		vim.cmd("windo diffoff")
+		print("diff mode off")
+	end
+end
+vim.keymap.set('n', '<leader>td', toggle_diffmode, {})
 
 --[[ -- starting directory
 autocmd("VimEnter", {
