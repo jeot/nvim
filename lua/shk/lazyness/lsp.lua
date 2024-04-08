@@ -37,7 +37,7 @@ local function lsp_config()
 			'matlab_ls',
 			'lua_ls',
 			'clangd',
-			'rust_analyzer'
+			-- 'rust_analyzer'
 		},
 		handlers = {
 			lsp_zero.default_setup,
@@ -46,8 +46,6 @@ local function lsp_config()
 
 	-- (Optional) Configure lua language server for neovim
 	require('lspconfig').lua_ls.setup(lsp_zero.nvim_lua_ls())
-
-	-- require('lspconfig').rust_analyzer.setup()
 
 	-- for html
 	--Enable (broadcasting) snippet capability for completion
