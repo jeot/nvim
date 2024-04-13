@@ -4,7 +4,6 @@ local check_backspace = function()
 end
 
 local function configuration()
-      -- See `:help cmp`
 	local cmp = require 'cmp';
 	local luasnip = require 'luasnip';
 	luasnip.config.setup {}
@@ -26,12 +25,11 @@ local function configuration()
 		-- },
 
 		mapping = cmp.mapping.preset.insert {
-			-- Select the [n]ext item
-			['<C-n>'] = cmp.mapping.select_next_item(),
-			['<C-j>'] = cmp.mapping.select_next_item(),
-			-- Select the [p]revious item
-			['<C-p>'] = cmp.mapping.select_prev_item(),
-			['<C-k>'] = cmp.mapping.select_prev_item(),
+			-- Select the [n]ext/[p]revious item
+			['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i', 'c'}),
+			['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 'c'}),
+			['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i', 'c'}),
+			['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i', 'c'}),
 
 			-- Accept ([y]es) the completion.
 			--  This will auto-import if your LSP supports it.

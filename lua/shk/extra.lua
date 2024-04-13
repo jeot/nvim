@@ -88,8 +88,11 @@ end
 
 -- set font if gui is available
 if vim.g.neovide or vim.fn.has('gui') then
-  vim.o.guifont = "Mononoki Nerd Font Mono:h14"
   -- vim.o.guifont = "Ubuntu Mono:h18"
+  vim.o.guifont = "Mononoki Nerd Font Mono:h15"
+  if vim.fn.hostname() == 'shk-system' then
+    vim.o.guifont = "Mononoki Nerd Font Mono:h17"
+  end
 end
 
 -- toggle listchars and eol
