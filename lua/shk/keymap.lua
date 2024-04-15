@@ -46,12 +46,14 @@ nkeymap('s', '%') -- find the matching pair
 vkeymap('s', '%') -- find the matching pair
 nkeymap('U', '<c-r>') -- redo
 nkeymap('*', '*N:silent set hls<CR>') -- don't jump with * search
+-- vkeymap('*', '*N') -- don't jump with * search
 nkeymap('<leader>;', 'q:k') -- show command history
 nkeymap('<leader>/', 'q/k') -- show search history
 nkeymap('<leader>j', 'mz:join<cr>`z') -- join the lines, hold the cursor
 vkeymap('<leader>j', 'mz:join<cr>`z')
 nkeymap('<leader>k', 'kmz:join<cr>`z')
 vkeymap('<leader>k', 'kmz:join<cr>`z')
+nkeymap('<Esc>', '<cmd>nohlsearch<CR>') -- toggle highlight
 nkeymap('<leader>th', '<cmd>silent set hlsearch! hlsearch?<CR>') -- toggle highlight
 nkeymap('<leader>tw', ':silent set wrap! wrap?<CR>') -- toggle wrap
 nkeymap('<leader>ts', ':silent set spell! spell?<CR>') -- toggle spell
@@ -64,6 +66,7 @@ nkeymap('N', 'Nzvzz')
 nkeymap('<leader>=', '=i{') -- auto indent inside {} block
 tkeymap('<Esc>', '<C-\\><C-n>')
 nkeymap('vaa', 'ggVG') -- select all file
+nkeymap('vv', 'V') -- select line
 ikeymap('<C-l>', '_')
 
 -- record/repeat macro
