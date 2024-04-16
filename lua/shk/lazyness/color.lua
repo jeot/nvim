@@ -24,9 +24,8 @@ end
 
 -- add some colorschemes as plugins
 return {
-	'rafi/awesome-vim-colorschemes', -- multiple colorscheme in one repository
+	-- 'rafi/awesome-vim-colorschemes', -- multiple colorscheme in one repository
 	--'folke/tokyonight.nvim',
-	--'marko-cerovac/material.nvim',
 	{ 'rose-pine/neovim',     as = 'rose-pine' },
 
 	{ 'sainnhe/sonokai',
@@ -35,8 +34,27 @@ return {
 			vim.g.sonokai_style = 'maia'
 			-- vim.g.sonokai_style = 'espresso'
 			vim.g.sonokai_better_performance = 1
-			ColorMyPencils("sonokai")
+			-- ColorMyPencils("sonokai")
 		end,
-	}
+	},
+
+	{
+		'tanvirtin/monokai.nvim',
+		config = function()
+			require('monokai').setup {}
+			-- require('monokai').setup { palette = require('monokai').pro }
+			-- require('monokai').setup { palette = require('monokai').soda }
+			-- require('monokai').setup { palette = require('monokai').ristretto }
+			ColorMyPencils("monokai")
+		end
+	},
+
+	-- {
+	-- 	  "loctvl842/monokai-pro.nvim",
+	-- 	  config = function()
+	-- 	    require("monokai-pro").setup()
+	-- 			ColorMyPencils("monokai-pro")
+	-- 		end
+	-- }
 
 }

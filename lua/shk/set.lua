@@ -56,12 +56,12 @@ vim.opt.paste = false
 vim.opt.autoread = true
 vim.opt.mouse = "a"
 vim.opt.list = true
---      ﰴ  ﲒ ﲖ  ﰲ 壟 ﬋     55555
---      ﰴ  ﲒ ﲖ  ﰲ 壟 ﬋     55555
+--      ﰴ   ﲒ ﲖ  ﰲ 壟 ﬋     55555
 -- vim.opt.listchars = { tab = '• ', trail = '•', nbsp = '+', extends = '»' }
--- vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '»' }
 vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '' }
 -- vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '', eol = '﬋' }
+-- vim.opt.listchars = { tab = '', trail = '•', nbsp = '+', extends = '»' }
+-- vim.opt.listchars = { tab = '', trail = '•', nbsp = '+', extends = '»' }
 vim.opt.sessionoptions = "blank,buffers,folds,help,tabpages,winsize,terminal,sesdir,unix,slash"
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 -- vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
