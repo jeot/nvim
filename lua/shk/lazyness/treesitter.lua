@@ -7,7 +7,7 @@ return {
 			require 'nvim-treesitter.configs'.setup {
 				build = ":TSUpdate",
 				event = { "BufReadPre", "BufNewFile" },
-				ensure_installed = { "c", "cpp", "matlab", "python", "c_sharp", "lua", "html" , "javascript", "make", "markdown", "rust"},
+				ensure_installed = { "c", "cpp", "matlab", "python", "c_sharp", "lua", "html" , "make", "markdown", "rust"},
 				ignore_install = { },
 				incremental_selection = {
 					enable = true,
@@ -25,6 +25,7 @@ return {
 				auto_install = false,
 				highlight = {
 					enable = true,
+					disable = { "txt", "help" }
 				},
 				indent = {
 					enable = true,

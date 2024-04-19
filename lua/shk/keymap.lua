@@ -1,5 +1,6 @@
 -- set leader key
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 local keymap = vim.keymap.set
 local opts = { noremap=true, silent=true }
@@ -120,7 +121,7 @@ nkeymap('<leader>DD', '"xdd') -- multi line cut
 nkeymap('<leader>dd', '"Xdd')
 vkeymap('<leader>D', '"xd')
 vkeymap('<leader>d', '"Xd')
-nkeymap('<leader>x', '"xp') -- paste multi
+nkeymap('<leader>X', '"xp') -- paste multi
 nkeymap('<leader>YY', '"xyy')
 -- nkeymap('<leader>R', ':%s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
 -- vkeymap('<leader>R', ':s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
@@ -138,13 +139,14 @@ vkeymap('<leader>os', '"uy:!start www.google.com/search?q="<c-r>u"<cr>') -- sear
 -- file/buffer
 nkeymap('<leader>fe', vim.cmd.Ex) -- file explorer
 nkeymap('<leader>sf', ':w<cr>') -- save buffer
-nkeymap('<leader>ss', ':exe "mksession! " . v:this_session<CR>') -- save session
+-- nkeymap('<leader>ss', ':exe "mksession! " . v:this_session<CR>') -- save session
 nkeymap('<leader>so', ':w <bar> source %<cr>') -- save & source file
 nkeymap('<leader>sa', ':wall<CR>') -- save all files
 nkeymap('<leader>ff', '1<c-g>') -- print filepath
 nkeymap('<leader>Q', ':qall<CR>') -- close all
 nkeymap('<leader>fQ', ':qall!<CR>') -- force close all
-nkeymap('<leader>q', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
+nkeymap('<leader>x', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
+nkeymap('<leader>cl', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
 nkeymap('<leader>fq', ':Bdelete!<CR>') -- force delete buffer
 nkeymap('ZQ', ':bd!<cr>') -- close buffer without saving, don't close window
 nkeymap('ZZ', ':w <bar> Bdelete<CR>') -- save buffer and close, don't close window
@@ -188,8 +190,8 @@ nkeymap('<leader>oP', ':e ~/AppData/Local/nvim/after/plugin/<CR>')
 -- nkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{zz"<CR>')
 -- vkeymap('J', '<cmd>execute "keepjumps norm! " . v:count1 . "}zz"<CR>')
 -- vkeymap('K', '<cmd>execute "keepjumps norm! " . v:count1 . "{zz"<CR>')
-nkeymap('<c-n>', '<cmd>bnext<CR>') -- previously L
-nkeymap('<c-p>', '<cmd>bprevious<CR>') -- previously H
+-- nkeymap('<c-n>', '<cmd>bnext<CR>') -- previously L
+-- nkeymap('<c-p>', '<cmd>bprevious<CR>') -- previously H
 nkeymap('<c-u>', '9kzz')
 nkeymap('<c-d>', '9jzz')
 vkeymap('<c-u>', '9k')
@@ -210,4 +212,12 @@ nkeymap('<leader>ee', ':silent exe "!" . getline(".")<CR>')
 nkeymap('<leader>ex', ':exe getline(".")<CR>')
 --nkeymap('<leader>et', ':exe "!tmux send -t .+ \'echo " . vim.fn.getline(".") . "\' Enter"<CR>')
 --nkeymap('<leader>E', ':exe "!tmux send -t .+ \'" . vim.fn.getline(".") . "\' Enter"<CR>')
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<c-n>', '<cmd>lnext<CR>', { desc = 'Next local fixlist'})
+vim.keymap.set('n','<c-p>', '<cmd>lprev<CR>', { desc = 'Previous local fixlist'})
 

@@ -40,7 +40,8 @@ vim.opt.showcmd = true
 vim.opt.signcolumn = "yes:1" --"auto"
 vim.opt.cmdheight = 1
 vim.opt.timeout = true
-vim.opt.timeoutlen = 3000
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 vim.opt.ttimeoutlen = 10
 vim.opt.encoding = "utf-8"
 vim.opt.backspace = { "indent", "eol", "start" }
@@ -54,11 +55,13 @@ vim.opt.wildmenu = true
 vim.opt.wildignore = "*.o,*.obj,*.bak,*.exe"
 vim.opt.paste = false
 vim.opt.autoread = true
-vim.opt.mouse = "a"
+vim.opt.mouse = 'a'
 vim.opt.list = true
---      ﰴ   ﲒ ﲖ  ﰲ 壟 ﬋     55555
+vim.opt.inccommand = 'split'
+--      ﰴ   ﲒ ﲖ  ﰲ 壟 ﬋     ···␣
 -- vim.opt.listchars = { tab = '• ', trail = '•', nbsp = '+', extends = '»' }
 vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '' }
+vim.opt.listchars = { tab = ' ', trail = '·', nbsp = '␣', extends = '' }
 -- vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '', eol = '﬋' }
 -- vim.opt.listchars = { tab = '', trail = '•', nbsp = '+', extends = '»' }
 -- vim.opt.listchars = { tab = '', trail = '•', nbsp = '+', extends = '»' }
