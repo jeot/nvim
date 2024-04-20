@@ -27,7 +27,6 @@ local function ckeymap(key, map) -- Command?
 end
 
 allkeymap('<C-z>', '<nop>')
-nkeymap('<C-;>', '<Esc>')
 xkeymap('<C-;>', '<Esc>')
 vkeymap('<C-;>', '<Esc>')
 ckeymap('<C-;>', '<Esc>')
@@ -35,6 +34,10 @@ ikeymap('<C-;>', '<Esc>')
 nkeymap('J', '<nop>')
 nkeymap('K', '<nop>')
 nkeymap('<space><space>', '<nop>')
+nkeymap('<C-;>', '<Esc><cmd>nohlsearch<CR>')
+tkeymap('<C-;>', '<Esc><C-\\><C-n>')
+nkeymap('<Esc>', '<cmd>nohlsearch<CR>')
+tkeymap('<Esc>', '<C-\\><C-n>')
 -- ikeymap('jk', '<Esc>')
 -- ikeymap('kj', '<Esc>')
 
@@ -54,7 +57,6 @@ nkeymap('<leader>j', 'mz:join<cr>`z') -- join the lines, hold the cursor
 vkeymap('<leader>j', 'mz:join<cr>`z')
 nkeymap('<leader>k', 'kmz:join<cr>`z')
 vkeymap('<leader>k', 'kmz:join<cr>`z')
-nkeymap('<Esc>', '<cmd>nohlsearch<CR>') -- toggle highlight
 nkeymap('<leader>th', '<cmd>silent set hlsearch! hlsearch?<CR>') -- toggle highlight
 nkeymap('<leader>tw', ':silent set wrap! wrap?<CR>') -- toggle wrap
 nkeymap('<leader>ts', ':silent set spell! spell?<CR>') -- toggle spell
@@ -65,7 +67,6 @@ nkeymap('<leader>cd', '<cmd>cd %:h<cr>') -- change global directory to current b
 nkeymap('n', 'nzvzz') -- center find
 nkeymap('N', 'Nzvzz')
 nkeymap('<leader>=', '=i{') -- auto indent inside {} block
-tkeymap('<Esc>', '<C-\\><C-n>')
 nkeymap('vaa', 'ggVG') -- select all file
 nkeymap('vv', 'V') -- select line
 ikeymap('<C-l>', '_')
@@ -145,7 +146,7 @@ nkeymap('<leader>sa', ':wall<CR>') -- save all files
 nkeymap('<leader>ff', '1<c-g>') -- print filepath
 nkeymap('<leader>Q', ':qall<CR>') -- close all
 nkeymap('<leader>fQ', ':qall!<CR>') -- force close all
-nkeymap('<leader>x', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
+nkeymap('<leader>q', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
 nkeymap('<leader>cl', ':Bdelete<CR>') -- delete buffer, but don't close window (using vim-bbye plugin)
 nkeymap('<leader>fq', ':Bdelete!<CR>') -- force delete buffer
 nkeymap('ZQ', ':bd!<cr>') -- close buffer without saving, don't close window
@@ -175,13 +176,12 @@ nkeymap("<C-Left>", ":vertical resize -2<CR>")
 nkeymap("<C-Right>", ":vertical resize +2<CR>")
 
 -- quick file access
-nkeymap('<leader>oi', ':e ~/AppData/Local/nvim/init.lua<cr>')
-nkeymap('<leader>ok', ':e ~/AppData/Local/nvim/lua/shk/keymap.lua<cr>')
+local nvim_config = vim.fn.stdpath('config')
+nkeymap('<leader>ok', ':e '..nvim_config..'/lua/shk/keymap.lua<cr>')
 nkeymap('<leader>oa', ':e ~/.config/alacritty/alacritty.toml<cr>')
-nkeymap('<leader>oh', ':e C:/Users/shk/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/myScript.ahk<cr>')
 nkeymap('<leader>op', ':e ~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>')
 nkeymap('<leader>ot', ':e ~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json<CR>')
-nkeymap('<leader>oP', ':e ~/AppData/Local/nvim/after/plugin/<CR>')
+nkeymap('<leader>oh', ':e C:/Users/shk/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/myScript.ahk<cr>')
 
 -- navigation
 -- nkeymap('J', '}')
@@ -208,16 +208,16 @@ vkeymap('ge', 'G')
 -- nkeymap('}', '/^\\s*}<CR>:nohl<CR>')
 
 -- execute command line under cursor
-nkeymap('<leader>ee', ':silent exe "!" . getline(".")<CR>')
-nkeymap('<leader>ex', ':exe getline(".")<CR>')
+-- nkeymap('<leader>ee', ':silent exe "!" . getline(".")<CR>')
+-- nkeymap('<leader>ex', ':exe getline(".")<CR>')
 --nkeymap('<leader>et', ':exe "!tmux send -t .+ \'echo " . vim.fn.getline(".") . "\' Enter"<CR>')
 --nkeymap('<leader>E', ':exe "!tmux send -t .+ \'" . vim.fn.getline(".") . "\' Enter"<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic Error messages' })
+vim.keymap.set('n', '<leader>x', vim.diagnostic.setloclist, { desc = 'Open diagnostic Quickfix list' })
 vim.keymap.set('n', '<c-n>', '<cmd>lnext<CR>', { desc = 'Next local fixlist'})
 vim.keymap.set('n','<c-p>', '<cmd>lprev<CR>', { desc = 'Previous local fixlist'})
 

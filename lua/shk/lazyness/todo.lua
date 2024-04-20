@@ -6,7 +6,7 @@ return {
 		opts = {
 			keywords = {
 				FIX = {
-					icon = "",
+					icon = "",
 					color = "error",
 					alt = { "fix", "FIXME", "BUG", "FIXIT", "ISSUE" },
 					-- signs = false, -- configure signs for some keywords individually

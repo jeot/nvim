@@ -1,7 +1,7 @@
 -- Use `opts = {}` to force a plugin to be loaded.
 --
 --  This is equivalent to:
---    require('xxx').setup({})
+--  require('xxx').setup({})
 
 return {
 	'nvim-lua/plenary.nvim',
@@ -16,25 +16,24 @@ return {
 	'tpope/vim-unimpaired',
 
 	-- comment/uncomment
-  { 'numToStr/Comment.nvim', opts = {} },
+	{ 'numToStr/Comment.nvim', opts = {} },
 
 	-- display sequence keys help
 	{
 		"folke/which-key.nvim",
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
-
-      -- Document existing key chains
+		event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+		config = function() -- This is the function that runs, AFTER loading
+			require('which-key').setup()
+			-- Document existing key chains
 			-- todo:
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-      }
-    end,
+			require('which-key').register {
+				['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+				['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
+				['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
+				['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+				['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+			}
+		end,
 	},
 
 	-- measure startup time of neovim
