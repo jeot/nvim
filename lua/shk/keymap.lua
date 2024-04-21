@@ -26,22 +26,22 @@ local function ckeymap(key, map) -- Command?
 	keymap('c', key, map, opts)
 end
 
+-- the ugly things!
 allkeymap('<C-z>', '<nop>')
 xkeymap('<C-;>', '<Esc>')
 vkeymap('<C-;>', '<Esc>')
 ckeymap('<C-;>', '<Esc>')
 ikeymap('<C-;>', '<Esc>')
+xkeymap('<C-;>', '<Esc>')
 nkeymap('J', '<nop>')
 nkeymap('K', '<nop>')
 nkeymap('<space><space>', '<nop>')
-nkeymap('<C-;>', '<Esc><cmd>nohlsearch<CR>')
 tkeymap('<C-;>', '<Esc><C-\\><C-n>')
-nkeymap('<Esc>', '<cmd>nohlsearch<CR>')
 tkeymap('<Esc>', '<C-\\><C-n>')
--- ikeymap('jk', '<Esc>')
--- ikeymap('kj', '<Esc>')
 
 -- the most I use
+nkeymap('<C-;>', '<Esc><cmd>nohlsearch<CR>')
+nkeymap('<Esc>', '<cmd>nohlsearch<CR>')
 nkeymap('<leader>v', ':vs<cr><c-w>l')
 nkeymap('<C-o>', '<C-o>zz')
 nkeymap('<C-i>', '<C-i>zz')

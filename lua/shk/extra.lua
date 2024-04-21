@@ -145,3 +145,6 @@ autocmd("VimEnter", {
 -- vim.diagnostic.disable()
 --
 
+vim.cmd [[
+    :hi link CurSearch IncSearch
+]]

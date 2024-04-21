@@ -10,7 +10,7 @@
 local font_name = "Mononoki Nerd Font Mono"
 local font_size = 16
 if vim.fn.hostname() == 'shk-system' then
-	font_size = 17
+	font_size = 15
 end
 
 return {
