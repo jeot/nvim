@@ -20,10 +20,10 @@ local function configuration()
 			end,
 		},
 
-		-- window = {
-		-- 	completion = cmp.config.window.bordered(),
-		-- 	documentation = cmp.config.window.bordered(),
-		-- },
+		window = {
+			completion = cmp.config.window.bordered(),
+			documentation = cmp.config.window.bordered(),
+		},
 
 		mapping = cmp.mapping.preset.insert {
 			-- Select the [n]ext/[p]revious item
@@ -164,10 +164,13 @@ end
 
 return {
 	-- auto completion
-	{'hrsh7th/nvim-cmp', config = function()
-		require('cmp').setup(configuration())
-		extra_config()
-	end},
+	{
+		'hrsh7th/nvim-cmp',
+		config = function()
+			require('cmp').setup(configuration())
+			extra_config()
+		end
+	},
 	{'hrsh7th/cmp-nvim-lsp'},
 	{"hrsh7th/cmp-buffer"},
 	{"hrsh7th/cmp-path"},
