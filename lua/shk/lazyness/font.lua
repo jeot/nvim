@@ -9,32 +9,29 @@
 --
 local font_name = "Mononoki Nerd Font Mono"
 local font_size = 16
-if vim.fn.hostname() == 'shk-system' then
-	font_size = 15
+if vim.fn.hostname() == "shk-system" then
+	font_size = 18
 end
 
 return {
-	'Sup3Legacy/fontsize.nvim',
+	"Sup3Legacy/fontsize.nvim",
 	config = function()
-		require('fontsize').init(
-			{
-				-- Required argument
-				-- font = "Mononoki Nerd Font Mono",
-				font = font_name,
+		require("fontsize").init({
+			-- Required argument
+			-- font = "Mononoki Nerd Font Mono",
+			font = font_name,
 
-				-- Optional arguments
-				min = 3,
-				default = font_size,
-				max = 32,
-				step = 1,
-			}
-		)
-		vim.keymap.set('n', '<C-=>', "<cmd>FontIncrease<CR>")
-		vim.keymap.set('n', '<C-->', "<cmd>FontDecrease<CR>")
-		vim.keymap.set('n', '<C-0>', "<cmd>FontReset<CR>")
-		vim.keymap.set('i', '<C-=>', "<cmd>FontIncrease<CR>")
-		vim.keymap.set('i', '<C-->', "<cmd>FontDecrease<CR>")
-		vim.keymap.set('i', '<C-0>', "<cmd>FontReset<CR>")
+			-- Optional arguments
+			min = 3,
+			default = font_size,
+			max = 32,
+			step = 1,
+		})
+		vim.keymap.set("n", "<C-=>", "<cmd>FontIncrease<CR>")
+		vim.keymap.set("n", "<C-->", "<cmd>FontDecrease<CR>")
+		vim.keymap.set("n", "<C-0>", "<cmd>FontReset<CR>")
+		vim.keymap.set("i", "<C-=>", "<cmd>FontIncrease<CR>")
+		vim.keymap.set("i", "<C-->", "<cmd>FontDecrease<CR>")
+		vim.keymap.set("i", "<C-0>", "<cmd>FontReset<CR>")
 	end,
 }
-
