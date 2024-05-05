@@ -95,10 +95,14 @@ local function config()
 		}))
 	end, { desc = "[/] Fuzzily search in current buffer" })
 
-	-- Shortcut for searching your neovim configuration files
+	-- Shortcut for searching your neovim configuration files (or other directories)
 	vim.keymap.set("n", "<leader>oo", function()
 		builtin.find_files({ cwd = vim.fn.stdpath("config") })
 	end, { desc = "Find Neovim Config Files" })
+
+	vim.keymap.set("n", "<leader>od", function()
+		builtin.find_files({ cwd = "~/Dropbox/" })
+	end, { desc = "Find Files in Dropbox" })
 end
 
 return {
