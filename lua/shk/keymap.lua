@@ -4,25 +4,32 @@ vim.g.maplocalleader = " "
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
-local function allkeymap(key, map) -- All
+local function allkeymap(key, map, desc) -- All
+	opts["desc"] = desc
 	keymap("", key, map, opts)
 end
-local function nkeymap(key, map) -- Normal
+local function nkeymap(key, map, desc) -- Normal
+	opts["desc"] = desc
 	keymap("n", key, map, opts)
 end
-local function ikeymap(key, map) -- Insert
+local function ikeymap(key, map, desc) -- Insert
+	opts["desc"] = desc
 	keymap("i", key, map, opts)
 end
-local function vkeymap(key, map) -- Visual
+local function vkeymap(key, map, desc) -- Visual
+	opts["desc"] = desc
 	keymap("v", key, map, opts)
 end
-local function xkeymap(key, map) -- Visual Block
+local function xkeymap(key, map, desc) -- Visual Block
+	opts["desc"] = desc
 	keymap("x", key, map, opts)
 end
-local function tkeymap(key, map) -- Terminal?
+local function tkeymap(key, map, desc) -- Terminal?
+	opts["desc"] = desc
 	keymap("t", key, map, opts)
 end
-local function ckeymap(key, map) -- Command?
+local function ckeymap(key, map, desc) -- Command?
+	opts["desc"] = desc
 	keymap("c", key, map, opts)
 end
 
@@ -141,17 +148,17 @@ vkeymap("<leader>os", '"uy:!start www.google.com/search?q="<c-r>u"<cr>') -- sear
 -- file/buffer
 nkeymap("<leader>fe", vim.cmd.Ex) -- file explorer
 nkeymap("<leader>sf", ":w<cr>") -- save buffer
--- nkeymap('<leader>ss', ':exe "mksession! " . v:this_session<CR>') -- save session
-nkeymap("<leader>so", ":w <bar> source %<cr>") -- save & source file
 nkeymap("<leader>sa", ":wall<CR>") -- save all files
-nkeymap("<leader>ff", "1<c-g>") -- print filepath
+nkeymap("<leader>so", ":w <bar> source %<cr>") -- save & source file
+nkeymap("<leader>fp", "1<c-g>", "Display absolute file path") -- print filepath
 nkeymap("<leader>Q", ":qall<CR>") -- close all
 nkeymap("<leader>fQ", ":qall!<CR>") -- force close all
 nkeymap("<leader>q", ":Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
-nkeymap("<leader>cl", ":Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
 nkeymap("<leader>fq", ":Bdelete!<CR>") -- force delete buffer
-nkeymap("ZQ", ":bd!<cr>") -- close buffer without saving, don't close window
+nkeymap("<leader>cl", ":Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
+nkeymap("ZQ", ":Bdelete!<CR>") -- close buffer without saving, don't close window
 nkeymap("ZZ", ":w <bar> Bdelete<CR>") -- save buffer and close, don't close window
+-- nkeymap('<leader>ss', ':exe "mksession! " . v:this_session<CR>') -- save session
 
 -- windows/splits
 -- nkeymap('<c-h>', '<c-w>h')
