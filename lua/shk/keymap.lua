@@ -121,7 +121,7 @@ nkeymap("<leader>YY", '"xyy') -- multi line yank by user
 nkeymap("<leader>yy", '"Xyy')
 nkeymap("<leader>ys", 'mx:let @x=""<cr>:%g//yank X<cr>:let @+=@x<cr>`x') -- multi line yank searched word
 nkeymap("<leader>cc", 'mx"hyyp`xjviw"0P') -- duplicate line, replace word under cursor with yanked register
-nkeymap("<leader>cc", 'mx"hyyp`xj*:s//<C-R>0/g<CR>') -- duplicate line, replace word under cursor with yanked register in full line
+nkeymap("<leader>cc", 'mx"hyyp`xj*N:s//<C-R>0/g<CR>') -- duplicate line, replace word under cursor with yanked register in full line
 nkeymap("<leader>Y", '"xy')
 nkeymap("<leader>y", '"Xy')
 vkeymap("<leader>Y", '"xy')
