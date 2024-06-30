@@ -20,11 +20,12 @@ local function config()
 				i = {
 					["<C-k>"] = actions.move_selection_previous, -- move to prev result
 					["<C-j>"] = actions.move_selection_next, -- move to next result
-					["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
+					["<C-q>"] = actions.send_selected_to_loclist + actions.open_loclist, -- send selected to quickfixlist
+					["<C-l>"] = actions.send_to_loclist + actions.open_loclist, -- send selected to quickfixlist
 				},
 				n = {
 					["<C-;>"] = actions.close,
-					["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist, -- send selected to quickfixlist
+					["<C-q>"] = actions.send_selected_to_loclist + actions.open_loclist, -- send selected to quickfixlist
 				},
 			},
 		},
