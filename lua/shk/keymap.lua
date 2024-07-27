@@ -94,7 +94,15 @@ vkeymap(">", ">gv") -- stay in indent mode (while in visual mode)
 -- copy/paste/replace/substitute
 nkeymap("Y", "y$") -- yank to end if line
 vkeymap("p", "P") -- while pasting on top of visual selection, hold the yanked register
-ikeymap("<c-p>", "<c-r>0") -- paste what was yanked when writing
+nkeymap("y", '"yy') -- also will put in unnamed register
+vkeymap("y", '"yy') -- also will put in unnamed register
+nkeymap("d", '"dd') -- also will put in unnamed register
+vkeymap("d", '"dd') -- also will put in unnamed register
+nkeymap("yaa", ":%y<cr>:%yank +<cr>") -- yank all file, also into clipboard
+nkeymap("yal", ":%y<cr>:%yank +<cr>") -- yank all file, also into clipboard
+nkeymap("daa", ":%d<cr>") -- delete all file
+nkeymap("dal", ":%d<cr>") -- delete all file
+ikeymap("<c-p>", "<c-r>y") -- paste what was yanked when writing
 nkeymap("<c-v>", '"+p')
 vkeymap("<c-v>", '"+P')
 ikeymap("<c-v>", "<c-r>+") -- for windows clipboard
@@ -102,36 +110,33 @@ ikeymap("<c-v>", "<c-r>+") -- for windows clipboard
 vkeymap("<c-c>", '"+y')
 nkeymap("<c-c>", '"+y')
 nkeymap("<c-c><c-c>", '"+yy')
+nkeymap("<c-c>aa", ":%y+<cr>") -- yank all file
 -- ckeymap('<c-p>', '<c-r>0')
 -- nkeymap('<c-p>', '"+p')
 -- vkeymap('<c-y>', '"+y')
 -- nkeymap('<c-y>', '"+y')
-nkeymap("yaa", ":%y<cr>") -- yank all file
-nkeymap("daa", ":%d<cr>") -- delete  all file
-nkeymap("<c-c>aa", ":%y+<cr>") -- yank all file
-nkeymap("<leader>p", '"0p') -- from yanked register
-nkeymap("<leader>P", '"0P')
-vkeymap("<leader>p", '"0p')
-vkeymap("<leader>P", '"0P')
-nkeymap("<leader>rw", 'viw"0P') -- replace current word with yanked
+nkeymap("<leader>p", '"yp') -- from yanked register
+vkeymap("<leader>p", '"yp')
+nkeymap("<leader>rw", 'viw"yP') -- replace current word with yanked
 nkeymap("<leader>rl", '"hyiw:s/<c-r>h/<c-r>0/gI<cr>') -- replace current word with yanked, in current line
 nkeymap("<leader>ra", '"hyiw:%s/<c-r>h/<c-r>0/gI<cr>') -- replace current word with yanked, in file
 nkeymap("<leader>rr", 'dd"0P')
-nkeymap("<leader>YY", '"xyy') -- multi line yank by user
-nkeymap("<leader>yy", '"Xyy')
-nkeymap("<leader>ys", 'mx:let @x=""<cr>:%g//yank X<cr>:let @+=@x<cr>`x') -- multi line yank searched word
-nkeymap("<leader>cc", 'mx"hyyp`xjviw"0P') -- duplicate line, replace word under cursor with yanked register
-nkeymap("<leader>cc", 'mx"hyyp`xj*N:s//<C-R>0/g<CR>') -- duplicate line, replace word under cursor with yanked register in full line
-nkeymap("<leader>Y", '"xy')
-nkeymap("<leader>y", '"Xy')
-vkeymap("<leader>Y", '"xy')
-vkeymap("<leader>y", '"Xy')
-nkeymap("<leader>DD", '"xdd') -- multi line cut
-nkeymap("<leader>dd", '"Xdd')
-vkeymap("<leader>D", '"xd')
-vkeymap("<leader>d", '"Xd')
-nkeymap("<leader>X", '"xp') -- paste multi
-nkeymap("<leader>YY", '"xyy')
+-- nkeymap("<leader>YY", '"xyy') -- multi line yank by user
+-- nkeymap("<leader>yy", '"Xyy') -- multi line yank by user
+-- vkeymap("<leader>Y", '"xy')
+-- nkeymap("<leader>Y", '"xy')
+-- nkeymap("<leader>YY", '"xyy')
+-- nkeymap("<leader>X", '"xp') -- paste multi
+-- nkeymap("<leader>DD", '"xdd') -- multi line cut
+-- nkeymap("<leader>dd", '"Xdd')
+-- vkeymap("<leader>D", '"xd')
+nkeymap("<leader>d", '"Dd')
+vkeymap("<leader>d", '"Dd')
+vkeymap("<leader>y", '"Yy')
+nkeymap("<leader>y", '"Yy')
+nkeymap("<leader>ys", 'mm:let @y=""<cr>:%g//yank Y<cr>:let @"=@y<cr>`m') -- multi line yank searched word
+nkeymap("<leader>cc", 'mm"hyyp`mjviw"yP') -- duplicate line, replace word under cursor with yanked register
+nkeymap("<leader>cc", 'mm"hyyp`mj*N:s//<C-R>y/g<CR>') -- duplicate line, replace word under cursor with yanked register in full line
 -- nkeymap('<leader>R', ':%s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
 -- vkeymap('<leader>R', ':s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
 nkeymap("<leader><c-n>", ":%s/\\<<c-r><c-w>\\>//gIn<cr>") -- count keyword

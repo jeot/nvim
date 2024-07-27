@@ -1,5 +1,5 @@
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldmethod = "expr"
 vim.opt.foldnestmax = 3
 vim.opt.foldminlines = 3
@@ -11,7 +11,7 @@ vim.opt.exrc = false
 vim.opt.secure = true
 vim.opt.relativenumber = false
 vim.opt.number = true
-vim.opt.numberwidth = 4;
+vim.opt.numberwidth = 4
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -39,7 +39,7 @@ vim.opt.modeline = false
 vim.opt.showcmd = true
 vim.opt.signcolumn = "yes:1" --"auto"
 vim.opt.cmdheight = 1
-vim.opt.timeout = true
+vim.opt.timeout = false
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 vim.opt.ttimeoutlen = 10
@@ -55,13 +55,13 @@ vim.opt.wildmenu = true
 vim.opt.wildignore = "*.o,*.obj,*.bak,*.exe"
 vim.opt.paste = false
 vim.opt.autoread = true
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 vim.opt.list = true
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 --      ﰴ   ﲒ ﲖ  ﰲ 壟 ﬋     ···␣
 -- vim.opt.listchars = { tab = '• ', trail = '•', nbsp = '+', extends = '»' }
-vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '' }
-vim.opt.listchars = { tab = ' ', trail = '·', nbsp = '␣', extends = '' }
+vim.opt.listchars = { tab = " ", trail = "•", nbsp = "+", extends = "" }
+vim.opt.listchars = { tab = " ", trail = "·", nbsp = "␣", extends = "" }
 -- vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '', eol = '﬋' }
 -- vim.opt.listchars = { tab = '', trail = '•', nbsp = '+', extends = '»' }
 -- vim.opt.listchars = { tab = '', trail = '•', nbsp = '+', extends = '»' }
@@ -72,13 +72,13 @@ vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 vim.opt.cursorline = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 vim.opt.showtabline = 1
 -- vim.opt.clipboard = "unnamedplus"
 -- set powershell for windwos
 vim.opt.shell = "powershell"
 vim.opt.shellcmdflag = "-Command"
-vim.opt.shellquote = ''
-vim.opt.shellxquote = ''
-vim.opt.shellredir = '| Out-File -Encoding UTF8 %s'
-vim.opt.shellpipe = '| Out-File -Encoding UTF8 %s'
+vim.opt.shellquote = ""
+vim.opt.shellxquote = ""
+vim.opt.shellredir = "| Out-File -Encoding UTF8 %s"
+vim.opt.shellpipe = "| Out-File -Encoding UTF8 %s"
