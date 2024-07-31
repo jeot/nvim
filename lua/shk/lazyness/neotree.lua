@@ -25,6 +25,12 @@ return {
 				statusline = false,
 			},
 			window = {
+				position = "left",
+				width = 30,
+				mapping_options = {
+					noremap = true,
+					nowait = true,
+				},
 				mappings = {
 					["O"] = function(state)
 						local node = state.tree:get_node()

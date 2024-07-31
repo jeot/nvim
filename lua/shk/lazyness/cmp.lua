@@ -24,6 +24,7 @@ local function configuration()
 			-- Accept ([y]es) the completion.
 			-- ['<C-y>'] = cmp.mapping.confirm { select = true },
 			["<C-y>"] = cmp.mapping(cmp.mapping.confirm({ select = true }), { "i", "c" }),
+			["<C-l>"] = cmp.mapping(cmp.mapping.confirm({ select = true }), { "i", "c" }),
 
 			-- Manually trigger a completion from nvim-cmp.
 			--  Generally you don't need this, because nvim-cmp will display
@@ -38,16 +39,16 @@ local function configuration()
 			--
 			-- <c-l> will move you to the right of each of the expansion locations.
 			-- <c-h> is similar, except moving you backwards.
-			["<C-l>"] = cmp.mapping(function()
-				if luasnip.expand_or_locally_jumpable() then
-					luasnip.expand_or_jump()
-				end
-			end, { "i", "s" }),
-			["<C-h>"] = cmp.mapping(function()
-				if luasnip.locally_jumpable(-1) then
-					luasnip.jump(-1)
-				end
-			end, { "i", "s" }),
+			-- ["<C-l>"] = cmp.mapping(function()
+			-- 	if luasnip.expand_or_locally_jumpable() then
+			-- 		luasnip.expand_or_jump()
+			-- 	end
+			-- end, { "i", "s" }),
+			-- ["<C-h>"] = cmp.mapping(function()
+			-- 	if luasnip.locally_jumpable(-1) then
+			-- 		luasnip.jump(-1)
+			-- 	end
+			-- end, { "i", "s" }),
 		}),
 
 		sources = {

@@ -92,7 +92,7 @@ vkeymap(">", ">gv") -- stay in indent mode (while in visual mode)
 -- vkeymap('<c-Up>', ":m '<-2<CR>gv")
 
 -- copy/paste/replace/substitute
-nkeymap("Y", "y$") -- yank to end if line
+nkeymap("Y", '"yy$') -- yank to end if line
 vkeymap("p", "P") -- while pasting on top of visual selection, hold the yanked register
 nkeymap("y", '"yy') -- also will put in unnamed register
 vkeymap("y", '"yy') -- also will put in unnamed register

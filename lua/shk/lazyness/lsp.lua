@@ -84,7 +84,7 @@ local function lsp_config()
 	local servers = {
 		clangd = {},
 		-- gopls = {},
-		-- pyright = {},
+		pyright = {},
 		-- rust_analyzer = {},
 		-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 		--
@@ -94,6 +94,9 @@ local function lsp_config()
 		-- But for many setups, the LSP (`tsserver`) will work just fine
 		tsserver = {},
 		--
+		html = {},
+		cssls = {},
+		matlab_ls = {},
 
 		lua_ls = {
 			-- cmd = {...},
