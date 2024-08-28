@@ -192,6 +192,7 @@ nkeymap("<C-Right>", ":vertical resize +2<CR>")
 local nvim_config = vim.fn.stdpath("config")
 nkeymap("<leader>ok", ":e " .. nvim_config .. "/lua/shk/keymap.lua<cr>")
 nkeymap("<leader>oa", ":e ~/.config/alacritty/alacritty.toml<cr>")
+nkeymap("<leader>oba", ":e ~/.bash_aliases<cr>")
 nkeymap("<leader>op", ":e ~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>")
 nkeymap(
 	"<leader>ot",
