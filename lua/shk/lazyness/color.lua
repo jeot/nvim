@@ -8,7 +8,6 @@
 -- vim.g.gruvbox_contrast_dark = 'soft'
 
 local function ColorMyPencils(color)
-
 	color = color or "rose-pine"
 	vim.cmd.colorscheme(color)
 
@@ -24,14 +23,15 @@ end
 
 -- add some colorschemes as plugins
 return {
-	-- 'rafi/awesome-vim-colorschemes', -- multiple colorscheme in one repository
+	"rafi/awesome-vim-colorschemes", -- multiple colorscheme in one repository
 	--'folke/tokyonight.nvim',
-	{ 'rose-pine/neovim',     as = 'rose-pine' },
+	{ "rose-pine/neovim", as = "rose-pine" },
 
-	{ 'sainnhe/sonokai',
+	{
+		"sainnhe/sonokai",
 		config = function()
 			-- styles: 'default', 'atlantis', 'andromeda', 'shusia', 'maia', 'espresso'
-			vim.g.sonokai_style = 'maia'
+			vim.g.sonokai_style = "maia"
 			-- vim.g.sonokai_style = 'espresso'
 			vim.g.sonokai_better_performance = 1
 			-- ColorMyPencils("sonokai")
@@ -39,14 +39,14 @@ return {
 	},
 
 	{
-		'tanvirtin/monokai.nvim',
+		"tanvirtin/monokai.nvim",
 		config = function()
-			require('monokai').setup {}
+			require("monokai").setup({})
 			-- require('monokai').setup { palette = require('monokai').pro }
 			-- require('monokai').setup { palette = require('monokai').soda }
 			-- require('monokai').setup { palette = require('monokai').ristretto }
 			ColorMyPencils("monokai")
-		end
+		end,
 	},
 
 	-- {
@@ -56,5 +56,4 @@ return {
 	-- 			ColorMyPencils("monokai-pro")
 	-- 		end
 	-- }
-
 }
