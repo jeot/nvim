@@ -174,11 +174,11 @@ nkeymap("ZZ", ":w <bar> Bdelete<CR>") -- save buffer and close, don't close wind
 -- tkeymap('<c-j>', '<c-\\><c-n><c-w>j')
 -- tkeymap('<c-k>', '<c-\\><c-n><c-w>k')
 -- tkeymap('<c-l>', '<c-\\><c-n><c-w>l')
-nkeymap("<leader>w", "<c-w>") -- all windows operations
 -- tkeymap('<leader>w', '<c-\\><c-n><c-w>')
 nkeymap("<leader>wq", "<c-w>c") -- close window/split (safe)
 nkeymap("<leader>wn", "<c-w><c-w>") -- next window
 nkeymap("W", "<c-w><c-w>") -- next window
+nkeymap("<leader>w", "<c-w>") -- all windows operations
 -- nkeymap('<leader>sp', "<C-w>v") -- split window vertically
 -- nkeymap('<leader>sh', "<C-w>s") -- split window horizontally
 
