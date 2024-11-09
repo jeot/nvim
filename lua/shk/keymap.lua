@@ -76,7 +76,8 @@ nkeymap("N", "Nzvzz")
 nkeymap("<leader>=", "=i{") -- auto indent inside {} block
 nkeymap("vaa", "ggVG") -- select all file
 nkeymap("vv", "V") -- select line
-ikeymap("<C-l>", "_")
+ikeymap("kj", "<Esc>")
+ikeymap("jk", "<Esc>")
 
 -- record/repeat macro
 vkeymap("Q", ":norm @q<CR>")
