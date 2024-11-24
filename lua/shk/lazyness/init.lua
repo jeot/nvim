@@ -78,7 +78,7 @@ return {
 	{
 		"jakemason/ouroboros",
 		config = function()
-			vim.keymap.set("n", "<leader>a", "<cmd>Ouroboros<CR>", { silent = true })
+			vim.keymap.set("n", "S", "<cmd>Ouroboros<CR>", { silent = true })
 		end,
 	},
 
