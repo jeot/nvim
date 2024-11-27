@@ -6,6 +6,17 @@
 return {
 	"nvim-lua/plenary.nvim",
 
+	-- for using .evn files
+	{
+		"ellisonleao/dotenv.nvim",
+		config = function()
+			require("dotenv").setup({
+				enable_on_load = true, -- Enable loading .env automatically
+				cwd = "~/", -- Set to Neovim's config directory
+			})
+		end,
+	},
+
 	-- detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 
