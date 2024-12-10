@@ -148,8 +148,8 @@ nkeymap("<leader>R", '"hyiw:.,$s/\\<<C-r>h\\>/<c-r>0/gc<cr>') -- interactive rep
 nkeymap("<leader>oy", ':!start chrome "<c-r>""<cr>') -- open url from yanked
 nkeymap("<leader>ou", "\"uyiW:!start chrome '<c-r>u'<cr>") -- open url
 vkeymap("<leader>ou", '"uy:!start chrome "<c-r>u"<cr>') -- open visually selected url
-nkeymap("<leader>os", '"uyiw:!start www.google.com/search?q="<c-r>u"<cr>') -- open url
-vkeymap("<leader>os", '"uy:!start www.google.com/search?q="<c-r>u"<cr>') -- search visually selected text
+nkeymap("<leader>os", '"uyiw:!start www.google.com/search?q="<c-r>u"<cr><cr>') -- search under cursor
+vkeymap("<leader>os", '"uy:!start www.google.com/search?q="<c-r>u"<cr><cr>') -- search visually selected text
 
 -- file/buffer
 nkeymap("<leader>fe", vim.cmd.Ex) -- file explorer
