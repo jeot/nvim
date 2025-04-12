@@ -4,11 +4,12 @@ local augroup = vim.api.nvim_create_augroup
 -- create some group
 local group = augroup("SmashThatLikeButton", { clear = true })
 local yank_group = augroup("HighlightYank", {})
+local diagnostic_group = augroup("MyDiagnosticEvents", {})
 
 -- different indentation style for different file types
 autocmd({ "FileType" }, {
 	group = group,
-	pattern = { "*.lua", "*.css", "*.html" },
+	pattern = { "*.css", "*.html" },
 	command = "setlocal ts=2 sw=2 sts=0 noexpandtab",
 })
 
@@ -111,7 +112,7 @@ local function toggle_eol()
 	else
 		eol = true
 		vim.opt.list = true
-		vim.opt.listchars:append({ eol = "﬋" })
+		vim.opt.listchars:append({ eol = "󰌑" })
 		print("turn ON eol char ﬋ display")
 	end
 end
@@ -164,3 +165,25 @@ autocmd("VimEnter", {
 vim.cmd([[
   :hi link CurSearch IncSearch
 ]])
+
+autocmd("DiagnosticChanged", {
+	group = diagnostic_group,
+	callback = function()
+		local bufnr = vim.api.nvim_get_current_buf()
+		-- Save cursor position
+		local cur_pos = vim.api.nvim_win_get_cursor(0)
+
+		-- Check if there are diagnostics in the current buffer
+		local diagnostics = vim.diagnostic.get(bufnr)
+		if #diagnostics > 0 then
+			-- Silently update location list
+			vim.diagnostic.setloclist({ open = false })
+		else
+			-- Clear location list when no diagnostics
+			vim.fn.setloclist(0, {}, "r")
+		end
+
+		-- Restore cursor position
+		vim.api.nvim_win_set_cursor(0, cur_pos)
+	end,
+})

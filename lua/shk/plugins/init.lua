@@ -1,10 +1,14 @@
--- Use `opts = {}` to force a plugin to be loaded.
---
+-- Use `opts = {}` to force a plugin to be loaded. (good)
 --  This is equivalent to:
 --  require('xxx').setup({})
 
+-- Use `config = function require('xxx').setup({}) ... end` to have more control. (not recommended)
+
 return {
 	"nvim-lua/plenary.nvim",
+
+	-- detect tabstop and shiftwidth automatically
+	"tpope/vim-sleuth",
 
 	-- for using .evn files
 	{
@@ -17,11 +21,9 @@ return {
 		end,
 	},
 
-	-- detect tabstop and shiftwidth automatically
-	"tpope/vim-sleuth",
-
 	-- useful dev icons
-	"kyazdani42/nvim-web-devicons",
+	-- "kyazdani42/nvim-web-devicons",
+	{ "echasnovski/mini.icons", version = "*" },
 
 	-- unimpaired.vim: Pairs of handy bracket mappings
 	"tpope/vim-unimpaired",
@@ -33,11 +35,7 @@ return {
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
+		opts = {},
 		keys = {
 			{ "<leader>c", group = "[C]ode" },
 			{ "<leader>c_", hidden = true },
@@ -60,13 +58,12 @@ return {
 	},
 
 	-- measure startup time of neovim
-	"tweekmonster/startuptime.vim",
+	-- "tweekmonster/startuptime.vim",
 
 	-- Auto close parentheses
 	-- 'cohama/lexima.vim', -- primeagen don't like auto pair
 
 	-- delete/change/add parentheses/quotes/XML-tags/...
-	-- 'tpope/vim-surround',
 	{
 		"kylechui/nvim-surround",
 		config = function()

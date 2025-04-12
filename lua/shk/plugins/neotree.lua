@@ -1,10 +1,10 @@
 local function keymaps()
 	vim.keymap.set("n", "<leader>fe", "<cmd>Neotree toggle filesystem left<CR>", {})
 	-- vim.keymap.set('n', '<leader>fd', ":Neotree float reveal_file=<cfile> reveal_force_cwd<cr>")
-	-- vim.keymap.set('n', '<leader>b', ":Neotree toggle show buffers right<cr>")
+	vim.keymap.set("n", "<leader>fb", ":Neotree toggle show buffers right<cr>")
 	-- vim.keymap.set('n', '<leader>/', ":Neotree toggle current reveal_force_cwd<cr>")
 	-- vim.keymap.set('n', '<leader>|', ":Neotree reveal<cr>")
-	-- vim.keymap.set('n', '<leader>gs', ":Neotree float git_status<cr>")
+	vim.keymap.set("n", "<leader>fg", ":Neotree float git_status left<cr>")
 end
 return {
 	"nvim-neo-tree/neo-tree.nvim",

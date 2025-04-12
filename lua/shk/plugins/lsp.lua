@@ -65,6 +65,43 @@ local function lsp_config()
 		end,
 	})
 
+	-- this is to not show the inline virtual text only (won't completely shut down the diagnostic!)
+	--[[
+	-- Cache the original handler before redefining
+	local orig_virtual_text_show = vim.diagnostic.handlers.virtual_text.show
+	local orig_virtual_text_hide = vim.diagnostic.handlers.virtual_text.hide
+
+	vim.diagnostic.handlers.virtual_text = {
+		show = function(namespace, bufnr, diagnostics, opts)
+			local filtered = {}
+			for _, d in ipairs(diagnostics) do
+				if not d.message:match("PSTR") then
+					table.insert(filtered, d)
+				end
+			end
+			orig_virtual_text_show(namespace, bufnr, filtered, opts)
+		end,
+		hide = function(namespace, bufnr)
+			orig_virtual_text_hide(namespace, bufnr)
+		end,
+	}
+	--]]
+
+	-- this is to not show the diagnostic at all in case of matching!!
+	local default_handler = vim.lsp.diagnostic.on_publish_diagnostics
+	vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
+		if result and result.diagnostics then
+			local filtered = {}
+			for _, diagnostic in ipairs(result.diagnostics) do
+				if not diagnostic.message:match("PSTR") then
+					table.insert(filtered, diagnostic)
+				end
+			end
+			result.diagnostics = filtered
+		end
+		default_handler(err, result, ctx, config)
+	end
+
 	-- LSP servers and clients are able to communicate to each other what features they support.
 	--  By default, Neovim doesn't support everything that is in the LSP Specification.
 	--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -154,7 +191,7 @@ local function lsp_config()
 	require("mason-lspconfig").setup({
 		handlers = {
 			function(server_name)
-				-- 'mrcjkb/rustaceanvim' don't like it!
+				-- 'mrcjkb/rustaceanvim' doesn't like it!
 				if server_name == "rust_analyzer" then
 					return
 				end
@@ -172,8 +209,9 @@ end
 
 return {
 	{
-		"neovim/nvim-lspconfig",
+		'neovim/nvim-lspconfig',
 		dependencies = {
+			'saghen/blink.cmp',
 			-- Automatically install LSPs and related tools to stdpath for neovim
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",

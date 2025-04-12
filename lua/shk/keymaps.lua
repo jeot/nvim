@@ -1,6 +1,6 @@
 -- set leader key
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
@@ -102,8 +102,8 @@ vkeymap("d", '"dd') -- also will put in unnamed register
 nkeymap("yaa", ":%y<cr>:%yank +<cr>") -- yank all file, also into clipboard
 nkeymap("yal", ":%y<cr>:%yank +<cr>") -- yank all file, also into clipboard
 nkeymap("daa", ":%d<cr>") -- delete all file
-nkeymap("dal", ":%d<cr>") -- delete all file
-ikeymap("<c-p>", "<c-r>y") -- paste what was yanked when writing
+nkeymap("dal", ":%d<cr>") --  delete all file
+ikeymap("<c-p>", '<c-r>"') -- paste what was yanked/deletec when writing
 nkeymap("<c-v>", '"+p')
 vkeymap("<c-v>", '"+P')
 ikeymap("<c-v>", "<c-r>+") -- for windows clipboard
@@ -150,9 +150,9 @@ nkeymap("<leader>ou", "\"uyiW:!start chrome '<c-r>u'<cr>") -- open url
 vkeymap("<leader>ou", '"uy:!start chrome "<c-r>u"<cr>') -- open visually selected url
 nkeymap("<leader>os", '"uyiw:!start www.google.com/search?q="<c-r>u"<cr><cr>') -- search under cursor
 vkeymap("<leader>os", '"uy:!start www.google.com/search?q="<c-r>u"<cr><cr>') -- search visually selected text
+vkeymap("<leader>l", '"uy:!start "<c-r>u"<cr><cr>') -- search visually selected text
 
 -- file/buffer
-nkeymap("<leader>fe", vim.cmd.Ex) -- file explorer
 nkeymap("<leader>sf", ":w<cr>") -- save buffer
 nkeymap("<leader>sa", ":wall<CR>") -- save all files
 nkeymap("<leader>so", ":w <bar> source %<cr>") -- save & source file
@@ -164,9 +164,11 @@ nkeymap("<leader>fq", ":Bdelete!<CR>") -- force delete buffer
 nkeymap("<leader>cl", ":Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
 nkeymap("ZQ", ":Bdelete!<CR>") -- close buffer without saving, don't close window
 nkeymap("ZZ", ":w <bar> Bdelete<CR>") -- save buffer and close, don't close window
+nkeymap("<leader>oi", "<CMD>Oil --float<CR>", "Open parent directory")
+nkeymap("-", "<CMD>Oil --float<CR>", "Open parent directory")
 -- nkeymap('<leader>ss', ':exe "mksession! " . v:this_session<CR>') -- save session
 
--- windows/splits
+-- tabs/windows/splits
 -- nkeymap('<c-h>', '<c-w>h')
 -- nkeymap('<c-j>', '<c-w>j')
 -- nkeymap('<c-k>', '<c-w>k')
@@ -180,26 +182,33 @@ nkeymap("<leader>wq", "<c-w>c") -- close window/split (safe)
 nkeymap("<leader>wn", "<c-w><c-w>") -- next window
 nkeymap("W", "<c-w><c-w>") -- next window
 nkeymap("<leader>w", "<c-w>") -- all windows operations
+nkeymap("T", "gt") -- switch to next tab
 -- nkeymap('<leader>sp', "<C-w>v") -- split window vertically
 -- nkeymap('<leader>sh', "<C-w>s") -- split window horizontally
 
 -- resize windows with arrows
-nkeymap("<C-Up>", ":resize +2<CR>")
-nkeymap("<C-Down>", ":resize -2<CR>")
-nkeymap("<C-Left>", ":vertical resize -2<CR>")
-nkeymap("<C-Right>", ":vertical resize +2<CR>")
+nkeymap("<C-Down>", ":resize +2<CR>")
+nkeymap("<C-Up>", ":resize -2<CR>")
+nkeymap("<C-Right>", ":vertical resize -2<CR>")
+nkeymap("<C-Left>", ":vertical resize +2<CR>")
 
--- quick file access
+-- quick open file
 local nvim_config = vim.fn.stdpath("config")
-nkeymap("<leader>ok", ":e " .. nvim_config .. "/lua/shk/keymap.lua<cr>")
+nkeymap("<leader>ow", ":e ~/.wezterm.lua<cr>")
+nkeymap("<leader>ok", ":e " .. nvim_config .. "/lua/shk/keymaps.lua<cr>")
 nkeymap("<leader>oa", ":e ~/.config/alacritty/alacritty.toml<cr>")
+nkeymap("<leader>oa", ":e C:/Users/shk/AppData/Roaming/alacritty/alacritty.toml<cr>")
+nkeymap("<leader>ox", ":e C:/msys2/home/shk/.tmux.conf<cr>")
+nkeymap("<leader>om", ":e ~/.tmux.conf<cr>")
 nkeymap("<leader>oba", ":e ~/.bash_aliases<cr>")
-nkeymap("<leader>op", ":e ~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>")
+nkeymap("<leader>op", ":e ~/OneDrive/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1<CR>")
 nkeymap(
 	"<leader>ot",
 	":e ~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json<CR>"
 )
-nkeymap("<leader>oh", ":e C:/Users/shk/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/myScript.ahk<cr>")
+-- AutoHotKey
+-- nkeymap("<leader>oh", ":e C:/Users/shk/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/myScript.ahk<cr>")
+nkeymap("<leader>oh", ":e C:/Users/shk/OneDrive/Documents/AutoHotkey/Test1.ahk<cr>")
 
 -- navigation
 -- nkeymap('J', '}')
@@ -235,10 +244,14 @@ vkeymap("ge", "G")
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic Error messages" })
+-- Add keymaps for location list navigation
+-- vim.keymap.set("n", "<c-n>", "<cmd>lnext<CR>", { desc = "Next local fixlist" })
+-- vim.keymap.set("n", "<c-p>", "<cmd>lprev<CR>", { desc = "Previous local fixlist" })
+vim.keymap.set("n", "<c-p>", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "<c-n>", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 -- vim.keymap.set("n", "<leader>x", vim.diagnostic.setloclist, { desc = "Open diagnostic Quickfix list" })
 vim.keymap.set("n", "<leader>x", function()
-	vim.cmd("norm gg0")
+	vim.cmd("norm mmgg0")
 	vim.diagnostic.setloclist({ open = false })
+	vim.cmd("norm `m")
 end, { desc = "Populate diagnostic Quickfix list" })
-vim.keymap.set("n", "<c-n>", "<cmd>lnext<CR>", { desc = "Next local fixlist" })
-vim.keymap.set("n", "<c-p>", "<cmd>lprev<CR>", { desc = "Previous local fixlist" })
