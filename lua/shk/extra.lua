@@ -176,11 +176,11 @@ autocmd("DiagnosticChanged", {
 		-- Check if there are diagnostics in the current buffer
 		local diagnostics = vim.diagnostic.get(bufnr)
 		if #diagnostics > 0 then
-			-- Silently update location list
-			vim.diagnostic.setloclist({ open = false })
+			-- Silently update quickfix list
+			vim.diagnostic.setqflist({ open = false })
 		else
-			-- Clear location list when no diagnostics
-			vim.fn.setloclist(0, {}, "r")
+			-- Clear quickfix list when no diagnostics
+			vim.fn.setqflist({}, "r")
 		end
 
 		-- Restore cursor position

@@ -153,17 +153,17 @@ vkeymap("<leader>os", '"uy:!start www.google.com/search?q="<c-r>u"<cr><cr>') -- 
 vkeymap("<leader>l", '"uy:!start "<c-r>u"<cr><cr>') -- search visually selected text
 
 -- file/buffer
-nkeymap("<leader>sf", ":w<cr>") -- save buffer
-nkeymap("<leader>sa", ":wall<CR>") -- save all files
-nkeymap("<leader>so", ":w <bar> source %<cr>") -- save & source file
+nkeymap("<leader>sf", "<cmd>w<cr>") -- save buffer
+nkeymap("<leader>sa", "<cmd>wa<CR>") -- save all files
+nkeymap("<leader>so", "<cmd>w <bar> source %<cr>") -- save & source file
 nkeymap("<leader>fp", "1<c-g>", "Display absolute file path") -- print filepath
-nkeymap("<leader>Q", ":qall<CR>") -- close all
-nkeymap("<leader>fQ", ":qall!<CR>") -- force close all
-nkeymap("<leader>q", ":Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
-nkeymap("<leader>fq", ":Bdelete!<CR>") -- force delete buffer
-nkeymap("<leader>cl", ":Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
-nkeymap("ZQ", ":Bdelete!<CR>") -- close buffer without saving, don't close window
-nkeymap("ZZ", ":w <bar> Bdelete<CR>") -- save buffer and close, don't close window
+nkeymap("<leader>Q", "<cmd>qall<CR>") -- close all
+nkeymap("<leader>fQ", "<cmd>qall!<CR>") -- force close all
+nkeymap("<leader>q", "<cmd>Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
+nkeymap("<leader>fq", "<cmd>Bdelete!<CR>") -- force delete buffer
+nkeymap("<leader>cl", "<cmd>Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
+nkeymap("ZQ", "<cmd>Bdelete!<CR>") -- close buffer without saving, don't close window
+nkeymap("ZZ", "<cmd>w <bar> Bdelete<CR>") -- save buffer and close, don't close window
 nkeymap("<leader>oi", "<CMD>Oil --float<CR>", "Open parent directory")
 nkeymap("-", "<CMD>Oil --float<CR>", "Open parent directory")
 -- nkeymap('<leader>ss', ':exe "mksession! " . v:this_session<CR>') -- save session
@@ -229,6 +229,10 @@ vkeymap("gl", "$")
 vkeymap("gh", "^")
 nkeymap("ge", "G")
 vkeymap("ge", "G")
+nkeymap(")", "<cmd>lnext<CR>", "Next item in location list")
+nkeymap("(", "<cmd>lprev<CR>", "Previous item in location list")
+nkeymap("<c-)>", "<cmd>lnext<CR>", "Next item in location list")
+nkeymap("<c-(>", "<cmd>lprev<CR>", "Previous item in location list")
 -- nkeymap('<c-u>', '<c-u>zz')
 -- nkeymap('<c-d>', '<c-d>zz')
 -- nkeymap('{', '?^\\s*{<CR>:nohl<CR>')
@@ -244,14 +248,11 @@ vkeymap("ge", "G")
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic Error messages" })
--- Add keymaps for location list navigation
--- vim.keymap.set("n", "<c-n>", "<cmd>lnext<CR>", { desc = "Next local fixlist" })
--- vim.keymap.set("n", "<c-p>", "<cmd>lprev<CR>", { desc = "Previous local fixlist" })
 vim.keymap.set("n", "<c-p>", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "<c-n>", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 -- vim.keymap.set("n", "<leader>x", vim.diagnostic.setloclist, { desc = "Open diagnostic Quickfix list" })
-vim.keymap.set("n", "<leader>x", function()
-	vim.cmd("norm mmgg0")
-	vim.diagnostic.setloclist({ open = false })
-	vim.cmd("norm `m")
-end, { desc = "Populate diagnostic Quickfix list" })
+-- vim.keymap.set("n", "<leader>x", function()
+-- 	vim.cmd("norm mmgg0")
+-- 	vim.diagnostic.setloclist({ open = false })
+-- 	vim.cmd("norm `m")
+-- end, { desc = "Populate diagnostic Quickfix list" })

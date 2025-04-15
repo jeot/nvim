@@ -81,6 +81,8 @@ vim.opt.autoread = true
 vim.opt.inccommand = "split"
 
 vim.opt.shortmess:append("c")
+-- vim.opt.messagesopt = "hit-enter,wait:1000,history:500"
+vim.opt.messagesopt = "wait:1000,history:500"
 vim.opt.showtabline = 1
 -- vim.opt.clipboard = "unnamedplus"
 -- set powershell for windwos

@@ -7,7 +7,7 @@ local settings_without_icons = {
 		error = "error",
 		warning = "warn",
 		hint = "hint",
-		information = "info"
+		information = "info",
 	},
 	use_diagnostic_signs = false,
 	auto_open = false,
@@ -17,7 +17,7 @@ local settings_without_icons = {
 return {
 	"folke/trouble.nvim",
 	branch = "dev", -- IMPORTANT!
-	dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
 		-- your configuration comes here
 		-- or leave it empty to use the default settings

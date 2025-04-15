@@ -13,10 +13,11 @@ local function ColorMyPencils(color)
 	-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 	-- vim.api.nvim_set_hl(0, "Normal", { bg = "#3B4252" })
-	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#3B4252" })
-	vim.api.nvim_set_hl(0, "FloatBorder", { bg = "black", fg = "gray" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "black" })
-	vim.api.nvim_set_hl(0, "Pmenu", { bg = "black" })
+	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "bg" })
+	-- vim.api.nvim_set_hl(0, "CurSearch", { bg = "yellow", fg = "black" })
+	-- vim.api.nvim_set_hl(0, "FloatBorder", { bg = "black", fg = "gray" })
+	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "black" })
+	-- vim.api.nvim_set_hl(0, "Pmenu", { bg = "black" })
 	-- vim.api.nvim_set_hl(0, "Pmenu", { bg = "black" })
 	-- vim.api.nvim_set_hl(0, "FloatTitle", { bg = "black" })
 	-- vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "#191930", blend = 90 })
@@ -36,23 +37,23 @@ end, {
 
 -- add some colorschemes as plugins
 return {
+	-- {
+	-- 	"rebelot/kanagawa.nvim",
+	-- 	config = function()
+	-- 		require("kanagawa").setup({
+	-- 			-- transparent = true,
+	-- 		})
+	-- 		ColorMyPencils("kanagawa")
+	-- 	end,
+	-- },
 	{
-		"rebelot/kanagawa.nvim",
+		"rose-pine/neovim",
+		as = "rose-pine",
 		config = function()
-			require("kanagawa").setup({
-				-- transparent = true,
-			})
-			ColorMyPencils("kanagawa")
+			require("rose-pine").setup({})
+			ColorMyPencils("rose-pine")
 		end,
 	},
-	-- {
-	--	"rose-pine/neovim",
-	--	as = "rose-pine",
-	--	config = function()
-	--		require("rose-pine").setup({})
-	--		ColorMyPencils("rose-pine")
-	--	end,
-	-- },
 	-- {
 	--	"tanvirtin/monokai.nvim",
 	--	config = function()
