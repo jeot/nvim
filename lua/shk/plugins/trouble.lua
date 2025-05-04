@@ -16,6 +16,7 @@ local settings_without_icons = {
 
 return {
 	"folke/trouble.nvim",
+	enable = false,
 	branch = "dev", -- IMPORTANT!
 	-- dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {

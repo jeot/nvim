@@ -7,11 +7,11 @@ local yank_group = augroup("HighlightYank", {})
 local diagnostic_group = augroup("MyDiagnosticEvents", {})
 
 -- different indentation style for different file types
-autocmd({ "FileType" }, {
-	group = group,
-	pattern = { "*.css", "*.html" },
-	command = "setlocal ts=2 sw=2 sts=0 noexpandtab",
-})
+-- autocmd({ "FileType" }, {
+-- 	group = group,
+-- 	pattern = { "*.css", "*.html" },
+-- 	command = "setlocal ts=2 sw=2 sts=0 noexpandtab",
+-- })
 
 -- delete white space at end of lines
 autocmd("BufWritePre", {
@@ -35,12 +35,12 @@ autocmd("BufWritePre", {
 })
 
 -- auto reload file
--- (is this redundant with autoread option in neovim?)
 autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
 	group = group,
 	pattern = "*",
 	command = "if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif ",
 })
+-- (is this redundant with autoread option in neovim?)
 autocmd({ "FileChangedShellPost" }, {
 	group = group,
 	pattern = "*",
@@ -54,7 +54,7 @@ autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank({
 			higroup = "IncSearch",
-			timeout = 40,
+			timeout = 50,
 		})
 	end,
 })
@@ -89,18 +89,6 @@ nnoremap <silent> <leader>we :ZoomToggle<CR>
 --  },
 --  filetype = "vhdl", -- if filetype does not match the parser name
 --}
-
-if vim.g.neovide then
-	-- vim.g.neovide_transparency = 1
-	-- vim.g.neovide_floating_blur_amount_x = 20.0
-	-- vim.g.neovide_floating_blur_amount_y = 20.0
-	-- vim.g.neovide_fullscreen = false
-	vim.opt.linespace = 5
-	vim.g.neovide_maximized = true
-	vim.g.neovide_scale_factor = 1
-	vim.g.neovide_hide_mouse_when_typing = false
-	vim.g.neovide_remember_window_size = true
-end
 
 -- toggle listchars and eol
 local eol = false
@@ -143,24 +131,6 @@ local function toggle_diffmode()
 	end
 end
 vim.keymap.set("n", "<leader>td", toggle_diffmode, {})
-
---[[ -- starting directory
-autocmd("VimEnter", {
-  group = group,
-  pattern = '*',
-  callback = function()
-    vim.api.nvim_set_current_dir(vim.fn.expand("%:p:h"))
-  end,
-}) ]]
-
--- -- don't fold in .h files
--- autocmd(
---   {"BufEnter", "BufWinEnter"}, { group = group, pattern = {"*.h"}, command = "set fdl=99"}
--- )
-
--- disable diagnostics by default
--- vim.diagnostic.disable()
---
 
 vim.cmd([[
   :hi link CurSearch IncSearch

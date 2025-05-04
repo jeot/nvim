@@ -1,3 +1,4 @@
+-- use `enable=true/false` to enable or disable a plugin
 -- Use `opts = {}` to force a plugin to be loaded. (good)
 --  This is equivalent to:
 --  require('xxx').setup({})
@@ -22,7 +23,6 @@ return {
 	},
 
 	-- useful dev icons
-	-- "kyazdani42/nvim-web-devicons",
 	{ "echasnovski/mini.icons", version = "*" },
 
 	-- unimpaired.vim: Pairs of handy bracket mappings
@@ -60,9 +60,6 @@ return {
 	-- measure startup time of neovim
 	-- "tweekmonster/startuptime.vim",
 
-	-- Auto close parentheses
-	-- 'cohama/lexima.vim', -- primeagen don't like auto pair
-
 	-- delete/change/add parentheses/quotes/XML-tags/...
 	{
 		"kylechui/nvim-surround",
@@ -76,6 +73,7 @@ return {
 
 	-- undo
 	{
+		enable = false,
 		"mbbill/undotree",
 		config = function()
 			vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -97,5 +95,6 @@ return {
 		},
 	},
 
+	-- Better quickfix window in Neovim, polish old quickfix window
 	{ "kevinhwang91/nvim-bqf", opts = {} },
 }

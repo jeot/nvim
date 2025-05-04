@@ -5,7 +5,7 @@ vim.opt.numberwidth = 4
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 9
 vim.opt.showcmd = true
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 
 -- tab
 vim.opt.expandtab = false
@@ -36,7 +36,7 @@ vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.opt.signcolumn = "yes:1" --"auto"
+vim.opt.signcolumn = "yes:2" --"auto"
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.undofile = false
@@ -82,7 +82,7 @@ vim.opt.inccommand = "split"
 
 vim.opt.shortmess:append("c")
 -- vim.opt.messagesopt = "hit-enter,wait:1000,history:500"
-vim.opt.messagesopt = "wait:1000,history:500"
+vim.opt.messagesopt = "hit-enter,wait:1000,history:500"
 vim.opt.showtabline = 1
 -- vim.opt.clipboard = "unnamedplus"
 -- set powershell for windwos

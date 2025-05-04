@@ -107,21 +107,16 @@ ikeymap("<c-p>", '<c-r>"') -- paste what was yanked/deletec when writing
 nkeymap("<c-v>", '"+p')
 vkeymap("<c-v>", '"+P')
 ikeymap("<c-v>", "<c-r>+") -- for windows clipboard
--- ckeymap('<c-v>', '<c-r>+')
+nkeymap("<leader>p", '"yp') -- from yanked register
+vkeymap("<leader>p", '"yp')
+nkeymap("<leader>ro", 'viw"yP') -- replace only current word with yanked
+nkeymap("<leader>ri", '"hyiw:s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in line
+nkeymap("<leader>ra", '"hyiw:%s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in file
+nkeymap("<leader>rr", 'ddO<Esc>"yP') -- replace line with yanked
 vkeymap("<c-c>", '"+y')
 nkeymap("<c-c>", '"+y')
 nkeymap("<c-c><c-c>", '"+yy')
 nkeymap("<c-c>aa", ":%y+<cr>") -- yank all file
--- ckeymap('<c-p>', '<c-r>0')
--- nkeymap('<c-p>', '"+p')
--- vkeymap('<c-y>', '"+y')
--- nkeymap('<c-y>', '"+y')
-nkeymap("<leader>p", '"yp') -- from yanked register
-vkeymap("<leader>p", '"yp')
-nkeymap("<leader>rw", 'viw"yP') -- replace current word with yanked
-nkeymap("<leader>rl", '"hyiw:s/<c-r>h/<c-r>0/gI<cr>') -- replace current word with yanked, in current line
-nkeymap("<leader>ra", '"hyiw:%s/<c-r>h/<c-r>0/gI<cr>') -- replace current word with yanked, in file
-nkeymap("<leader>rr", 'dd"0P')
 -- nkeymap("<leader>YY", '"xyy') -- multi line yank by user
 -- nkeymap("<leader>yy", '"Xyy') -- multi line yank by user
 -- vkeymap("<leader>Y", '"xy')
