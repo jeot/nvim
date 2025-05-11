@@ -40,6 +40,7 @@ vkeymap("<C-;>", "<Esc>")
 ckeymap("<C-;>", "<Esc>")
 ikeymap("<C-;>", "<Esc>")
 xkeymap("<C-;>", "<Esc>")
+-- nkeymap("<C-;>", "<Esc>")
 nkeymap("J", "<nop>")
 nkeymap("K", "<nop>")
 nkeymap("<space><space>", "<nop>")
@@ -189,6 +190,10 @@ nkeymap("<C-Left>", ":vertical resize +2<CR>")
 
 -- quick open file
 local nvim_config = vim.fn.stdpath("config")
+nkeymap("<leader>osa", ":e ~/.config/shell/aliases.sh<cr>")
+nkeymap("<leader>obc", ":e ~/.config/waybar/config.jsonc<cr>")
+nkeymap("<leader>obs", ":e ~/.config/waybar/style.css<cr>")
+nkeymap("<leader>oh", ":e ~/.config/hypr/hyprland.conf<cr>")
 nkeymap("<leader>ow", ":e ~/.wezterm.lua<cr>")
 nkeymap("<leader>ok", ":e " .. nvim_config .. "/lua/shk/keymaps.lua<cr>")
 nkeymap("<leader>oa", ":e ~/.config/alacritty/alacritty.toml<cr>")
@@ -201,9 +206,8 @@ nkeymap(
 	"<leader>ot",
 	":e ~/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json<CR>"
 )
--- AutoHotKey
 -- nkeymap("<leader>oh", ":e C:/Users/shk/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/myScript.ahk<cr>")
-nkeymap("<leader>oh", ":e C:/Users/shk/OneDrive/Documents/AutoHotkey/Test1.ahk<cr>")
+-- nkeymap("<leader>oh", ":e C:/Users/shk/OneDrive/Documents/AutoHotkey/Test1.ahk<cr>")
 
 -- navigation
 -- nkeymap('J', '}')
