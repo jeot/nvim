@@ -114,6 +114,10 @@ nkeymap("<leader>ro", 'viw"yP') -- replace only current word with yanked
 nkeymap("<leader>ri", '"hyiw:s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in line
 nkeymap("<leader>ra", '"hyiw:%s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in file
 nkeymap("<leader>rr", 'ddO<Esc>"yP') -- replace line with yanked
+nkeymap('<leader>r"', 'vi""yP') -- replace inside ""
+nkeymap("<leader>r'", "vi'\"yP") -- replace inside ''
+nkeymap("<leader>r(", 'f)F(vi("yP') -- replace inside ()
+nkeymap("<leader>r)", 'f)F(vi("yP') -- replace inside ()
 vkeymap("<c-c>", '"+y')
 nkeymap("<c-c>", '"+y')
 nkeymap("<c-c><c-c>", '"+yy')
@@ -141,18 +145,22 @@ vkeymap("<leader><c-n>", ":s/\\<<c-r><c-w>\\>//gIn<cr>") -- count keyword
 nkeymap("<leader>R", '"hyiw:.,$s/\\<<C-r>h\\>/<c-r>0/gc<cr>') -- interactive replace the word under cursor
 
 -- open some urls/files
+-- test: https://google.com
 nkeymap("<leader>oy", ':!start chrome "<c-r>""<cr>') -- open url from yanked
 nkeymap("<leader>ou", "\"uyiW:!start chrome '<c-r>u'<cr>") -- open url
 vkeymap("<leader>ou", '"uy:!start chrome "<c-r>u"<cr>') -- open visually selected url
+nkeymap("<leader>ou", '"uyiW:!xdg-open <c-r>u<cr>') -- open url
 nkeymap("<leader>os", '"uyiw:!start www.google.com/search?q="<c-r>u"<cr><cr>') -- search under cursor
 vkeymap("<leader>os", '"uy:!start www.google.com/search?q="<c-r>u"<cr><cr>') -- search visually selected text
 vkeymap("<leader>l", '"uy:!start "<c-r>u"<cr><cr>') -- search visually selected text
+vkeymap("<leader>l", '"uy:!open "<c-r>u"<cr><cr>') -- search visually selected text
 
 -- file/buffer
 nkeymap("<leader>sf", "<cmd>w<cr>") -- save buffer
 nkeymap("<leader>sa", "<cmd>wa<CR>") -- save all files
 nkeymap("<leader>so", "<cmd>w <bar> source %<cr>") -- save & source file
 nkeymap("<leader>fp", "1<c-g>", "Display absolute file path") -- print filepath
+-- nkeymap("q<CR>", "<cmd>qall<CR>") -- close all
 nkeymap("<leader>Q", "<cmd>qall<CR>") -- close all
 nkeymap("<leader>fQ", "<cmd>qall!<CR>") -- force close all
 nkeymap("<leader>q", "<cmd>Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
@@ -194,7 +202,7 @@ nkeymap("<leader>osa", ":e ~/.config/shell/aliases.sh<cr>")
 nkeymap("<leader>obc", ":e ~/.config/waybar/config.jsonc<cr>")
 nkeymap("<leader>obs", ":e ~/.config/waybar/style.css<cr>")
 nkeymap("<leader>oh", ":e ~/.config/hypr/hyprland.conf<cr>")
-nkeymap("<leader>ow", ":e ~/.wezterm.lua<cr>")
+nkeymap("<leader>ow", ":e ~/.config/wezterm/wezterm.lua<cr>")
 nkeymap("<leader>ok", ":e " .. nvim_config .. "/lua/shk/keymaps.lua<cr>")
 nkeymap("<leader>oa", ":e ~/.config/alacritty/alacritty.toml<cr>")
 nkeymap("<leader>oa", ":e C:/Users/shk/AppData/Roaming/alacritty/alacritty.toml<cr>")
@@ -247,8 +255,9 @@ nkeymap("<c-(>", "<cmd>lprev<CR>", "Previous item in location list")
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic Error messages" })
-vim.keymap.set("n", "<c-p>", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "<c-n>", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "<c-p>", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic message" })
+vim.keymap.set("n", "<c-n>", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic message" })
+vim.keymap.set("n", "<leader>dh", vim.diagnostic.hide, { desc = "Hide Diagnostic message" })
 -- vim.keymap.set("n", "<leader>x", vim.diagnostic.setloclist, { desc = "Open diagnostic Quickfix list" })
 -- vim.keymap.set("n", "<leader>x", function()
 -- 	vim.cmd("norm mmgg0")

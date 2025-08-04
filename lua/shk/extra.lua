@@ -17,6 +17,7 @@ local diagnostic_group = augroup("MyDiagnosticEvents", {})
 autocmd("BufWritePre", {
 	group = group,
 	pattern = {
+		"*.sh",
 		"*.h",
 		"*.c",
 		"*.cpp",

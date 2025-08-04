@@ -2,21 +2,10 @@
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.numberwidth = 4
+vim.opt.cursorline = true
+vim.opt.wrap = false
 vim.opt.scrolloff = 4
-vim.opt.sidescrolloff = 9
-vim.opt.showcmd = true
-vim.opt.cmdheight = 1
-
--- tab
-vim.opt.expandtab = false
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.smarttab = true
-vim.opt.smartindent = true
-vim.opt.autoindent = true
-
--- editing line
+vim.opt.sidescrolloff = 8
 --      ﰴ   ﲒ ﲖ  ﰲ 壟 ﬋     ···␣  󰇘 󰌑
 vim.opt.list = true
 vim.opt.listchars = { tab = " ", trail = "·", nbsp = "␣", extends = "󰇘" }
@@ -24,13 +13,25 @@ vim.opt.listchars = { tab = " ", trail = "·", nbsp = "␣", extends = "󰇘"
 -- vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '󰇘', eol = '󰌑' }
 vim.opt.sessionoptions = "blank,buffers,folds,help,tabpages,winsize,terminal,sesdir,unix,slash"
 vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
-vim.opt.cursorline = true
+
+-- indentation
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
+vim.opt.expandtab = false
+vim.opt.smarttab = true
+vim.opt.smartindent = true
+vim.opt.autoindent = true
 vim.opt.breakindent = true
 
+vim.opt.showcmd = true
+vim.opt.cmdheight = 1
+
 -- search
-vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
 
 -- split
 vim.opt.splitbelow = true
@@ -54,7 +55,6 @@ vim.opt.exrc = false
 vim.opt.secure = true
 vim.opt.hidden = true
 vim.opt.errorbells = false
-vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -86,7 +86,8 @@ vim.opt.messagesopt = "hit-enter,wait:1000,history:500"
 vim.opt.showtabline = 1
 -- vim.opt.clipboard = "unnamedplus"
 -- set powershell for windwos
-vim.opt.shell = "powershell"
+-- vim.opt.shell = "powershell"
+vim.opt.shell = "bash"
 vim.opt.shellcmdflag = "-Command"
 vim.opt.shellquote = ""
 vim.opt.shellxquote = ""
