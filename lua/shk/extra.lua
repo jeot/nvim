@@ -2,7 +2,7 @@ local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
 -- create some group
-local group = augroup("SmashThatLikeButton", { clear = true })
+local shk_group = augroup("SmashThatLikeButton", { clear = true })
 local yank_group = augroup("HighlightYank", {})
 local diagnostic_group = augroup("MyDiagnosticEvents", {})
 
@@ -15,7 +15,7 @@ local diagnostic_group = augroup("MyDiagnosticEvents", {})
 
 -- delete white space at end of lines
 autocmd("BufWritePre", {
-	group = group,
+	group = shk_group,
 	pattern = {
 		"*.sh",
 		"*.h",
@@ -23,7 +23,6 @@ autocmd("BufWritePre", {
 		"*.cpp",
 		"*.lua",
 		"*.m",
-		"*.md",
 		"*.rs",
 		"*.js",
 		"*.ts",
@@ -37,17 +36,28 @@ autocmd("BufWritePre", {
 
 -- auto reload file
 autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
-	group = group,
+	group = shk_group,
 	pattern = "*",
 	command = "if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif ",
 })
+
 -- (is this redundant with autoread option in neovim?)
 autocmd({ "FileChangedShellPost" }, {
-	group = group,
+	group = shk_group,
 	pattern = "*",
 	command = "echohl WarningMsg | echo 'File changed on disk. Buffer reloaded.' | echohl None",
 })
 
+-- commenting html block elements
+autocmd("FileType", {
+	group = shk_group,
+	pattern = { "*.html", "*.tsx" },
+	callback = function()
+		vim.schedule(function()
+			vim.keymap.set("n", "gcc", ":lua print('good')", { buffer = true })
+		end)
+	end,
+})
 -- highlight yank for a short time
 autocmd("TextYankPost", {
 	group = yank_group,

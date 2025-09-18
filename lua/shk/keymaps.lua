@@ -77,6 +77,7 @@ nkeymap("N", "Nzvzz")
 nkeymap("<leader>=", "=i{") -- auto indent inside {} block
 nkeymap("vaa", "ggVG") -- select all file
 nkeymap("vv", "V") -- select line
+nkeymap("<leader>tt", "mmI{/* <Esc>A */}<Esc>`m") -- comment html tag
 -- ikeymap("kj", "<Esc>")
 -- ikeymap("jk", "<Esc>")
 
@@ -110,8 +111,13 @@ vkeymap("<c-v>", '"+P')
 ikeymap("<c-v>", "<c-r>+") -- for windows clipboard
 nkeymap("<leader>p", '"yp') -- from yanked register
 vkeymap("<leader>p", '"yp')
+nkeymap("<leader>d", '"Dd')
+vkeymap("<leader>d", '"Dd')
+vkeymap("<leader>y", '"Yy')
+nkeymap("<leader>y", '"Yy')
+nkeymap("<leader>ys", 'mm:let @y=""<cr>:%g//yank Y<cr>:let @"=@y<cr>`m') -- multi line yank searched word
 nkeymap("<leader>ro", 'viw"yP') -- replace only current word with yanked
-nkeymap("<leader>ri", '"hyiw:s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in line
+nkeymap("<leader>rl", '"hyiw:s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in line
 nkeymap("<leader>ra", '"hyiw:%s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in file
 nkeymap("<leader>rr", 'ddO<Esc>"yP') -- replace line with yanked
 nkeymap('<leader>r"', 'vi""yP') -- replace inside ""
@@ -131,13 +137,8 @@ nkeymap("<c-c>aa", ":%y+<cr>") -- yank all file
 -- nkeymap("<leader>DD", '"xdd') -- multi line cut
 -- nkeymap("<leader>dd", '"Xdd')
 -- vkeymap("<leader>D", '"xd')
-nkeymap("<leader>d", '"Dd')
-vkeymap("<leader>d", '"Dd')
-vkeymap("<leader>y", '"Yy')
-nkeymap("<leader>y", '"Yy')
-nkeymap("<leader>ys", 'mm:let @y=""<cr>:%g//yank Y<cr>:let @"=@y<cr>`m') -- multi line yank searched word
-nkeymap("<leader>cc", 'mm"hyyp`mjviw"yP') -- duplicate line, replace word under cursor with yanked register
-nkeymap("<leader>cc", 'mm"hyyp`mj*N:s//<C-R>y/g<CR>') -- duplicate line, replace word under cursor with yanked register in full line
+nkeymap("<leader>co", 'mm"hyyp`mjviw"yP') -- duplicate line, replace word under cursor with yanked register
+nkeymap("<leader>cl", 'mm"hyyp`mj*N:s//<C-R>y/g<CR>`mj*N:silent set hls<CR>') -- duplicate line, replace word under cursor with yanked register in full line. search word under cursor
 -- nkeymap('<leader>R', ':%s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
 -- vkeymap('<leader>R', ':s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
 nkeymap("<leader><c-n>", ":%s/\\<<c-r><c-w>\\>//gIn<cr>") -- count keyword
@@ -157,7 +158,9 @@ vkeymap("<leader>l", '"uy:!open "<c-r>u"<cr><cr>') -- search visually selected t
 
 -- file/buffer
 nkeymap("<leader>sf", "<cmd>w<cr>") -- save buffer
+vkeymap("<leader>sf", "<Esc><cmd>w<cr>") -- save buffer
 nkeymap("<leader>sa", "<cmd>wa<CR>") -- save all files
+vkeymap("<leader>sa", "<Esc><cmd>wa<CR>") -- save all files
 nkeymap("<leader>so", "<cmd>w <bar> source %<cr>") -- save & source file
 nkeymap("<leader>fp", "1<c-g>", "Display absolute file path") -- print filepath
 -- nkeymap("q<CR>", "<cmd>qall<CR>") -- close all
@@ -165,7 +168,6 @@ nkeymap("<leader>Q", "<cmd>qall<CR>") -- close all
 nkeymap("<leader>fQ", "<cmd>qall!<CR>") -- force close all
 nkeymap("<leader>q", "<cmd>Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
 nkeymap("<leader>fq", "<cmd>Bdelete!<CR>") -- force delete buffer
-nkeymap("<leader>cl", "<cmd>Bdelete<CR>") -- delete buffer, but don't close window (using vim-bbye plugin)
 nkeymap("ZQ", "<cmd>Bdelete!<CR>") -- close buffer without saving, don't close window
 nkeymap("ZZ", "<cmd>w <bar> Bdelete<CR>") -- save buffer and close, don't close window
 nkeymap("<leader>oi", "<CMD>Oil --float<CR>", "Open parent directory")
