@@ -86,64 +86,54 @@ vkeymap("Q", ":norm @q<CR>")
 vkeymap(".", ":norm .<CR>")
 
 vkeymap("<", "<gv") -- stay in indent mode (while in visual mode)
-vkeymap(">", ">gv") -- stay in indent mode (while in visual mode)
+vkeymap(">", ">gv") -- stay in indent mode (while in  mode)
 
--- moveing lines. surprisingly Alt works in nvim!
+-- moveing lines.  hahaha
 -- nkeymap('<c-Down>', ':m .+1<CR>')
 -- nkeymap('<c-Up>', ':m .-2<CR>')
 -- vkeymap('<c-Down>', ":m '>+1<CR>gv")
 -- vkeymap('<c-Up>', ":m '<-2<CR>gv")
 
 -- copy/paste/replace/substitute
-nkeymap("Y", '"yy$') -- yank to end if line
-vkeymap("p", "P") -- while pasting on top of visual selection, hold the yanked register
-nkeymap("y", '"yy') -- also will put in unnamed register
-vkeymap("y", '"yy') -- also will put in unnamed register
-nkeymap("d", '"dd') -- also will put in unnamed register
-vkeymap("d", '"dd') -- also will put in unnamed register
-nkeymap("yaa", ":%y<cr>:%yank +<cr>") -- yank all file, also into clipboard
-nkeymap("yal", ":%y<cr>:%yank +<cr>") -- yank all file, also into clipboard
+vkeymap("p", "P") -- while pasting on top of selection, hold the yanked register
+-- nkeymap("D", '"dD') -- also will put in unnamed register
+-- vkeymap("D", '"dD') -- also will put in unnamed register
+-- nkeymap("d", '"dd') -- also will put in unnamed register
+-- vkeymap("d", '"dd') -- also will put in unnamed register
+nkeymap("C", '"cC') -- also will put in unnamed register
+vkeymap("C", '"cC') -- also will put in unnamed register
+nkeymap("c", '"cc') -- also will hahaha
+vkeymap("c", '"cc') -- hhh
+nkeymap("<leader>pd", '"-p') -- paste last small deleted (less than a line)
+nkeymap("<leader>py", '"0p') -- paste what was last yanked
+nkeymap("<leader>pc", '"cp') -- paste what was last changed (replaced)
+nkeymap("<leader>pi", '".p') -- paste what was last inserted
+nkeymap("yaa", ":%yank<cr>") -- yank all file
 nkeymap("daa", ":%d<cr>") -- delete all file
-nkeymap("dal", ":%d<cr>") --  delete all file
-ikeymap("<c-p>", '<c-r>"') -- paste what was yanked/deletec when writing
-nkeymap("<c-v>", '"+p')
-vkeymap("<c-v>", '"+P')
-ikeymap("<c-v>", "<c-r>+") -- for windows clipboard
-nkeymap("<leader>p", '"yp') -- from yanked register
-vkeymap("<leader>p", '"yp')
-nkeymap("<leader>d", '"Dd')
-vkeymap("<leader>d", '"Dd')
-vkeymap("<leader>y", '"Yy')
-nkeymap("<leader>y", '"Yy')
-nkeymap("<leader>ys", 'mm:let @y=""<cr>:%g//yank Y<cr>:let @"=@y<cr>`m') -- multi line yank searched word
-nkeymap("<leader>ro", 'viw"yP') -- replace only current word with yanked
-nkeymap("<leader>rl", '"hyiw:s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in line
-nkeymap("<leader>ra", '"hyiw:%s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in file
-nkeymap("<leader>rr", 'ddO<Esc>"yP') -- replace line with yanked
-nkeymap('<leader>r"', 'vi""yP') -- replace inside ""
-nkeymap("<leader>r'", "vi'\"yP") -- replace inside ''
-nkeymap("<leader>r(", 'f)F(vi("yP') -- replace inside ()
-nkeymap("<leader>r)", 'f)F(vi("yP') -- replace inside ()
-vkeymap("<c-c>", '"+y')
-nkeymap("<c-c>", '"+y')
-nkeymap("<c-c><c-c>", '"+yy')
-nkeymap("<c-c>aa", ":%y+<cr>") -- yank all file
--- nkeymap("<leader>YY", '"xyy') -- multi line yank by user
--- nkeymap("<leader>yy", '"Xyy') -- multi line yank by user
--- vkeymap("<leader>Y", '"xy')
--- nkeymap("<leader>Y", '"xy')
--- nkeymap("<leader>YY", '"xyy')
--- nkeymap("<leader>X", '"xp') -- paste multi
--- nkeymap("<leader>DD", '"xdd') -- multi line cut
--- nkeymap("<leader>dd", '"Xdd')
--- vkeymap("<leader>D", '"xd')
-nkeymap("<leader>co", 'mm"hyyp`mjviw"yP') -- duplicate line, replace word under cursor with yanked register
-nkeymap("<leader>cl", 'mm"hyyp`mj*N:s//<C-R>y/g<CR>`mj*N:silent set hls<CR>') -- duplicate line, replace word under cursor with yanked register in full line. search word under cursor
--- nkeymap('<leader>R', ':%s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
--- vkeymap('<leader>R', ':s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
+ikeymap("<c-p>", "<c-r>+") -- paste what was yanked/deleted inside vim
+nkeymap("<c-v>", '"*p') -- the last thing that was copied outside of the vim
+vkeymap("<c-v>", '"*P') -- the last thing that was copied outside of the vim
+ikeymap("<c-v>", "<c-r>*") -- the last thing that was copied outside of the vim
+nkeymap("<leader>y*", 'mm*:let @y=""<cr>:%g//yank Y<cr>:let @+=@y<cr>`m') -- multi line yank searched word
+nkeymap("<leader>ro", 'viw"0P') -- replace only current word with yanked
+nkeymap("<leader>rl", 'mm"hyiw:s/<c-r>h/<c-r>0/g<cr>`m') -- replace current word with yanked, in line
+nkeymap("<leader>co", 'mm"hyy"hp`mjviw"0P') -- duplicate line, replace word under cursor with yanked register
+nkeymap("<leader>cl", 'mm"hyy"hp`mj*N:s//<c-r>0/g<cr>`mj*N:silent set hls<cr>') -- duplicate line, replace word under cursor with yanked register in full line. search word under cursor
+-- nkeymap("<leader>ra", '"hyiw:%s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in file
+-- nkeymap("<leader>rr", 'ddO<Esc>"yP') -- replace line with yanked line
+-- nkeymap('<leader>r"', 'vi""yP') -- replace inside ""
+-- nkeymap("<leader>r'", "vi'\"yP") -- replace inside ''
+-- nkeymap("<leader>r(", 'f)F(vi("yP') -- replace inside ()
+-- nkeymap("<leader>r)", 'f)F(vi("yP') -- replace inside ()
+-- vkeymap("<c-c>", '"+y')
+-- nkeymap("<c-c>", '"+y')
+-- nkeymap("<c-c><c-c>", '"+yy')
+-- nkeymap("<c-c>aa", ":%y+<cr>") -- yank all file
 nkeymap("<leader><c-n>", ":%s/\\<<c-r><c-w>\\>//gIn<cr>") -- count keyword
 vkeymap("<leader><c-n>", ":s/\\<<c-r><c-w>\\>//gIn<cr>") -- count keyword
-nkeymap("<leader>R", '"hyiw:.,$s/\\<<C-r>h\\>/<c-r>0/gc<cr>') -- interactive replace the word under cursor
+-- nkeymap("<leader>R", '"hyiw:.,$s/\\<<C-r>h\\>/<c-r>0/gc<cr>') -- interactive replace the word under cursor
+-- nkeymap('<leader>R', ':%s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
+-- vkeymap('<leader>R', ':s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<left><left><left>') -- replace
 
 -- open some urls/files
 -- test: https://google.com
