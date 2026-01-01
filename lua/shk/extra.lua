@@ -70,6 +70,16 @@ autocmd("TextYankPost", {
 	end,
 })
 
+-- toggle wrap
+vim.keymap.set("n", "<leader>tw", function()
+	local cur_win = vim.api.nvim_get_current_win()
+	local value = vim.wo.wrap
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		vim.api.nvim_win_set_option(win, "wrap", not value)
+	end
+	vim.api.nvim_set_current_win(cur_win)
+end)
+
 -- Zoom / Restore window.
 vim.cmd([[
 function! s:ZoomToggle() abort
@@ -147,27 +157,27 @@ vim.cmd([[
   :hi link CurSearch IncSearch
 ]])
 
-autocmd("DiagnosticChanged", {
-	group = diagnostic_group,
-	callback = function()
-		local bufnr = vim.api.nvim_get_current_buf()
-		-- Save cursor position
-		local cur_pos = vim.api.nvim_win_get_cursor(0)
-
-		-- Check if there are diagnostics in the current buffer
-		local diagnostics = vim.diagnostic.get(bufnr)
-		if #diagnostics > 0 then
-			-- Silently update quickfix list
-			vim.diagnostic.setqflist({ open = false })
-		else
-			-- Clear quickfix list when no diagnostics
-			vim.fn.setqflist({}, "r")
-		end
-
-		-- Restore cursor position
-		vim.api.nvim_win_set_cursor(0, cur_pos)
-	end,
-})
+-- autocmd("DiagnosticChanged", {
+-- 	group = diagnostic_group,
+-- 	callback = function()
+-- 		local bufnr = vim.api.nvim_get_current_buf()
+-- 		-- Save cursor position
+-- 		local cur_pos = vim.api.nvim_win_get_cursor(0)
+--
+-- 		-- Check if there are diagnostics in the current buffer
+-- 		local diagnostics = vim.diagnostic.get(bufnr)
+-- 		if #diagnostics > 0 then
+-- 			-- Silently update quickfix list
+-- 			vim.diagnostic.setqflist({ open = false })
+-- 		else
+-- 			-- Clear quickfix list when no diagnostics
+-- 			vim.fn.setqflist({}, "r")
+-- 		end
+--
+-- 		-- Restore cursor position
+-- 		vim.api.nvim_win_set_cursor(0, cur_pos)
+-- 	end,
+-- })
 
 -- change rood directory based on current buffer
 --[[

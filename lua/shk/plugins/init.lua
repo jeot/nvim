@@ -11,17 +11,6 @@ return {
 	-- detect tabstop and shiftwidth automatically
 	"tpope/vim-sleuth",
 
-	-- for using .evn files
-	{
-		"ellisonleao/dotenv.nvim",
-		config = function()
-			require("dotenv").setup({
-				enable_on_load = true, -- Enable loading .env automatically
-				cwd = "~/", -- Set to Neovim's config directory
-			})
-		end,
-	},
-
 	-- useful dev icons
 	{ "echasnovski/mini.icons", version = "*" },
 

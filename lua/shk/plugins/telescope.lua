@@ -14,7 +14,7 @@ local function config()
 			preview = {
 				preview_cutoff = 25,
 				preview_width = 0.5,
-				filesize_limit = 0.1, -- MB
+				filesize_limit = 0.5, -- MB
 			},
 			mappings = {
 				i = {
@@ -25,7 +25,10 @@ local function config()
 				},
 				n = {
 					["<C-;>"] = actions.close,
+					["<C-k>"] = actions.move_selection_previous, -- move to prev result
+					["<C-j>"] = actions.move_selection_next, -- move to next result
 					["<C-q>"] = actions.send_selected_to_loclist + actions.open_loclist, -- send selected to quickfixlist
+					["<C-l>"] = actions.send_to_loclist + actions.open_loclist, -- send selected to quickfixlist
 				},
 			},
 		},
@@ -109,7 +112,6 @@ end
 return {
 	"nvim-telescope/telescope.nvim",
 	event = "VimEnter",
-	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ -- If encountering errors, see telescope-fzf-native README for install instructions

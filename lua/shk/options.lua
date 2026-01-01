@@ -6,9 +6,10 @@ vim.opt.cursorline = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 8
---      ﰴ   ﲒ ﲖ  ﰲ 壟 ﬋     ···␣  󰇘 󰌑
+--	      ﰴ   ﲒ ﲖ  ﰲ 壟 ﬋     ···␣  󰇘 󰌑𓍯 𓂃 🎀 │
 vim.opt.list = true
-vim.opt.listchars = { tab = " ", trail = "·", nbsp = "␣", extends = "󰇘" }
+vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣", extends = "󰇘" }
+-- vim.opt.listchars = { tab = " ", trail = "·", nbsp = "␣", extends = "󰇘" }
 -- vim.opt.listchars = { tab = '• ', trail = '•', nbsp = '+', extends = '»' }
 -- vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '󰇘', eol = '󰌑' }
 vim.opt.sessionoptions = "blank,buffers,folds,help,tabpages,winsize,terminal,sesdir,unix,slash"

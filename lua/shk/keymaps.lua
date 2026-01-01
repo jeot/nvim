@@ -66,7 +66,6 @@ vkeymap("<leader>j", "mz:join<cr>`z")
 nkeymap("<leader>k", "kmz:join<cr>`z")
 vkeymap("<leader>k", "kmz:join<cr>`z")
 nkeymap("<leader>th", "<cmd>silent set hlsearch! hlsearch?<CR>") -- toggle highlight
-nkeymap("<leader>tw", ":silent set wrap! wrap?<CR>") -- toggle wrap
 nkeymap("<leader>ts", ":silent set spell! spell?<CR>") -- toggle spell
 nkeymap("<leader>z", "zAzz") -- toggle folding
 nkeymap('<leader>s"', '/".\\{-}"<cr>') -- search "" strings
@@ -109,26 +108,28 @@ nkeymap("<leader>py", '"0p') -- paste what was last yanked
 nkeymap("<leader>pc", '"cp') -- paste what was last changed (replaced)
 nkeymap("<leader>pi", '".p') -- paste what was last inserted
 nkeymap("yaa", ":%yank<cr>") -- yank all file
-nkeymap("daa", ":%d<cr>") -- delete all file
+-- nkeymap("daa", ":%d<cr>") -- delete all file
 ikeymap("<c-p>", "<c-r>+") -- paste what was yanked/deleted inside vim
 nkeymap("<c-v>", '"*p') -- the last thing that was copied outside of the vim
 vkeymap("<c-v>", '"*P') -- the last thing that was copied outside of the vim
 ikeymap("<c-v>", "<c-r>*") -- the last thing that was copied outside of the vim
 nkeymap("<leader>y*", 'mm*:let @y=""<cr>:%g//yank Y<cr>:let @+=@y<cr>`m') -- multi line yank searched word
+nkeymap("<leader>yc", ":let @y=''<cr>") -- clear multi line yank register (y)
+nkeymap("<leader>yy", ":yank Y<cr>:let @+=@y<cr>") -- add line to multi line yank register (y)
 nkeymap("<leader>ro", 'viw"0P') -- replace only current word with yanked
 nkeymap("<leader>rl", 'mm"hyiw:s/<c-r>h/<c-r>0/g<cr>`m') -- replace current word with yanked, in line
 nkeymap("<leader>co", 'mm"hyy"hp`mjviw"0P') -- duplicate line, replace word under cursor with yanked register
 nkeymap("<leader>cl", 'mm"hyy"hp`mj*N:s//<c-r>0/g<cr>`mj*N:silent set hls<cr>') -- duplicate line, replace word under cursor with yanked register in full line. search word under cursor
+vkeymap("<c-c>", '"+y')
+nkeymap("<c-c>", '"+y')
+nkeymap("<c-c><c-c>", '"+yy')
+-- nkeymap("<c-c>aa", ":%y+<cr>") -- yank all file
 -- nkeymap("<leader>ra", '"hyiw:%s/<c-r>h/<c-r>y/gI<cr>') -- replace current word with yanked, in file
 -- nkeymap("<leader>rr", 'ddO<Esc>"yP') -- replace line with yanked line
 -- nkeymap('<leader>r"', 'vi""yP') -- replace inside ""
 -- nkeymap("<leader>r'", "vi'\"yP") -- replace inside ''
 -- nkeymap("<leader>r(", 'f)F(vi("yP') -- replace inside ()
 -- nkeymap("<leader>r)", 'f)F(vi("yP') -- replace inside ()
--- vkeymap("<c-c>", '"+y')
--- nkeymap("<c-c>", '"+y')
--- nkeymap("<c-c><c-c>", '"+yy')
--- nkeymap("<c-c>aa", ":%y+<cr>") -- yank all file
 nkeymap("<leader><c-n>", ":%s/\\<<c-r><c-w>\\>//gIn<cr>") -- count keyword
 vkeymap("<leader><c-n>", ":s/\\<<c-r><c-w>\\>//gIn<cr>") -- count keyword
 -- nkeymap("<leader>R", '"hyiw:.,$s/\\<<C-r>h\\>/<c-r>0/gc<cr>') -- interactive replace the word under cursor
@@ -196,8 +197,7 @@ nkeymap("<leader>obs", ":e ~/.config/waybar/style.css<cr>")
 nkeymap("<leader>oh", ":e ~/.config/hypr/hyprland.conf<cr>")
 nkeymap("<leader>ow", ":e ~/.config/wezterm/wezterm.lua<cr>")
 nkeymap("<leader>ok", ":e " .. nvim_config .. "/lua/shk/keymaps.lua<cr>")
-nkeymap("<leader>oa", ":e ~/.config/alacritty/alacritty.toml<cr>")
-nkeymap("<leader>oa", ":e C:/Users/shk/AppData/Roaming/alacritty/alacritty.toml<cr>")
+nkeymap("<leader>oa", ":e ~/.config/fish/aliases.fish<cr>")
 nkeymap("<leader>ox", ":e C:/msys2/home/shk/.tmux.conf<cr>")
 nkeymap("<leader>om", ":e ~/.tmux.conf<cr>")
 nkeymap("<leader>oba", ":e ~/.bash_aliases<cr>")
@@ -228,10 +228,10 @@ vkeymap("gl", "$")
 vkeymap("gh", "^")
 nkeymap("ge", "G")
 vkeymap("ge", "G")
-nkeymap(")", "<cmd>lnext<CR>", "Next item in location list")
-nkeymap("(", "<cmd>lprev<CR>", "Previous item in location list")
-nkeymap("<c-)>", "<cmd>lnext<CR>", "Next item in location list")
-nkeymap("<c-(>", "<cmd>lprev<CR>", "Previous item in location list")
+nkeymap(")", "<cmd>cnext<CR>", "Next item in location list")
+nkeymap("(", "<cmd>cprev<CR>", "Previous item in location list")
+nkeymap("<c-0>", "<cmd>cnext<CR>", "Next item in location list")
+nkeymap("<c-9>", "<cmd>cprev<CR>", "Previous item in location list")
 -- nkeymap('<c-u>', '<c-u>zz')
 -- nkeymap('<c-d>', '<c-d>zz')
 -- nkeymap('{', '?^\\s*{<CR>:nohl<CR>')

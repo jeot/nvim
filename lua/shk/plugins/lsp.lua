@@ -87,13 +87,24 @@ local function lsp_config()
 	}
 	--]]
 
+	-- don't show diagnostic in insert mode
+	local default_handler = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+		-- delay update diagnostics
+		update_in_insert = false,
+	})
 	-- this is to not show the diagnostic at all in case of matching!!
-	local default_handler = vim.lsp.diagnostic.on_publish_diagnostics
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
 		if result and result.diagnostics then
 			local filtered = {}
 			for _, diagnostic in ipairs(result.diagnostics) do
-				if not diagnostic.message:match("PSTR") then
+				if
+					diagnostic.message:match("vim.")
+					or diagnostic.message:match("proc-macro")
+					or diagnostic.message:match("E0107")
+					or diagnostic.message:match("PSTR")
+				then
+					-- ignore
+				else
 					table.insert(filtered, diagnostic)
 				end
 			end
@@ -120,6 +131,7 @@ local function lsp_config()
 	--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 	local servers = {
 		clangd = {},
+		biome = {},
 		-- gopls = {},
 		-- pyright = {},
 		-- rust_analyzer = {},
@@ -129,7 +141,11 @@ local function lsp_config()
 		--    https://github.com/pmizio/typescript-tools.nvim
 		--
 		-- But for many setups, the LSP (`tsserver`) will work just fine
-		ts_ls = {},
+		ts_ls = {
+			on_attach = function(client)
+				client.server_capabilities.documentFormattingProvider = false
+			end,
+		},
 		--
 		-- html = {},
 		-- cssls = {},
@@ -190,9 +206,14 @@ local function lsp_config()
 	require("mason-lspconfig").setup({
 		handlers = {
 			function(server_name)
+				print("server name" .. server_name)
 				-- 'mrcjkb/rustaceanvim' doesn't like it!
 				if server_name == "rust_analyzer" then
 					return
+				end
+				if server_name == "biome" then
+					print("enabling biome...")
+					vim.lsp.enable("biome")
 				end
 
 				local server = servers[server_name] or {}
@@ -220,5 +241,4 @@ return {
 		},
 		config = lsp_config,
 	},
-	-- {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', config = lsp_config},
 }
