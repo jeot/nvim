@@ -97,6 +97,11 @@ command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <leader>we :ZoomToggle<CR>
 ]])
 
+-- example :hi CursorLine ctermfg=Cyan guifg=#80a0ff gui=bold
+-- vim.cmd([[
+-- hi CursorLine ctermfg=Red guibg=#000000
+-- ]])
+
 -- vhdl tree-sitter test:
 --local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
 --parser_config.vhdl = {

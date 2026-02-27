@@ -2,7 +2,7 @@
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.numberwidth = 4
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.wrap = false
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 8
@@ -13,7 +13,7 @@ vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣", extends = "󰇘"
 -- vim.opt.listchars = { tab = '• ', trail = '•', nbsp = '+', extends = '»' }
 -- vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '󰇘', eol = '󰌑' }
 vim.opt.sessionoptions = "blank,buffers,folds,help,tabpages,winsize,terminal,sesdir,unix,slash"
-vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+-- vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
 
 -- indentation
 vim.opt.tabstop = 2
