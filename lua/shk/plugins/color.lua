@@ -1,24 +1,39 @@
--- add some colorschemes as plugins
 return {
+	-- {
+	-- 	"rose-pine/neovim",
+	-- 	as = "rose-pine",
+	-- 	config = function()
+	-- 		require("rose-pine").setup({
+	-- 			disable_background = true,
+	-- 			disable_float_background = true,
+	-- 		})
+	-- 		vim.cmd.colorscheme("rose-pine")
+	-- 	end,
+	-- },
+	-- {
+	-- 	"tanvirtin/monokai.nvim",
+	-- 	config = function()
+	-- 		require("monokai").setup({
+	-- 			disable_background = true,
+	-- 			disable_float_background = true,
+	-- 		})
+	-- 		vim.cmd.colorscheme("monokai")
+	-- 	end,
+	-- },
 	{
-		"rose-pine/neovim",
-		as = "rose-pine",
+		"tanvirtin/monokai.nvim",
+		lazy = false, -- load immediately
+		priority = 1000, -- load before other stuff
 		config = function()
-			require("rose-pine").setup({})
-			vim.cmd.colorscheme("rose-pine")
-			vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-			vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-			vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+			require("monokai").setup({
+				-- You can customize here if you want (optional)
+				-- palette = require("monokai").pro, -- or .classic, .soda, .ristretto
+				-- other options like italics, etc.
+			})
+
+			vim.cmd.colorscheme("monokai") -- or "monokai_pro", "monokai_soda", etc.
 		end,
 	},
-	-- {
-	--	"tanvirtin/monokai.nvim",
-	--	config = function()
-	--		require("monokai").setup({})
-	--		vim.cmd.colorscheme("monokai")
-	--		-- ColorMyPencils("monokai")
-	--	end,
-	-- },
 	-- "rafi/awesome-vim-colorschemes", -- multiple colorscheme in one repository
 	-- "folke/tokyonight.nvim",
 }

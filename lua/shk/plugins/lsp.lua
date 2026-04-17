@@ -179,13 +179,21 @@ local function lsp_config()
 		},
 	}
 
-	-- set signs on the signcolumn (gutter)
 	-- local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
-	local signs = { Error = "•", Warn = "•", Hint = "•", Info = "•" }
-	for type, icon in pairs(signs) do
-		local hl = "DiagnosticSign" .. type
-		vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-	end
+	-- set signs on the signcolumn (gutter)
+	vim.diagnostic.config({
+		signs = {
+			text = {
+				[vim.diagnostic.severity.ERROR] = "●",
+				[vim.diagnostic.severity.WARN] = "●",
+				[vim.diagnostic.severity.HINT] = "●",
+				[vim.diagnostic.severity.INFO] = "●",
+			},
+		},
+		virtual_text = true,
+		underline = true,
+		severity_sort = true,
+	})
 
 	-- Ensure the servers and tools above are installed
 	--  To check the current status of installed tools and/or manually install

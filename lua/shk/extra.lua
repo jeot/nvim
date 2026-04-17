@@ -162,6 +162,26 @@ vim.cmd([[
   :hi link CurSearch IncSearch
 ]])
 
+-- add some colorschemes as plugins
+local function fix_bg_colors()
+	print("ok")
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+	vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+	vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+	vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
+	vim.api.nvim_set_hl(0, "StatusLineTerm", { bg = "none" })
+	vim.api.nvim_set_hl(0, "StatusLineTermNC", { bg = "none" })
+	vim.api.nvim_set_hl(0, "WinBar", { bg = "none" })
+	vim.api.nvim_set_hl(0, "WinBarNC", { bg = "none" })
+	vim.api.nvim_set_hl(0, "LineNr", { bg = "none", fg = "#333333" })
+	vim.api.nvim_set_hl(0, "LineNrAbove", { bg = "none", fg = "#333333" })
+	vim.api.nvim_set_hl(0, "LineNrBelow", { bg = "none", fg = "#333333" })
+	vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+end
+
+fix_bg_colors()
+
 -- autocmd("DiagnosticChanged", {
 -- 	group = diagnostic_group,
 -- 	callback = function()
