@@ -8,9 +8,9 @@ local diagnostic_group = augroup("MyDiagnosticEvents", {})
 
 -- different indentation style for different file types
 -- autocmd({ "FileType" }, {
--- 	group = group,
--- 	pattern = { "*.css", "*.html" },
--- 	command = "setlocal ts=2 sw=2 sts=0 noexpandtab",
+--   group = group,
+--   pattern = { "*.css", "*.html" },
+--   command = "setlocal ts=2 sw=2 sts=0 noexpandtab",
 -- })
 
 -- delete white space at end of lines
@@ -182,26 +182,65 @@ end
 
 fix_bg_colors()
 
+-- Create an autocommand group for big files
+local bigfile_group = vim.api.nvim_create_augroup("BigFileSettings", { clear = true })
+local bigfile = require("shk.bigfile")
+
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+	group = bigfile_group,
+	pattern = "*",
+	callback = function(ev)
+		if bigfile.mark_buffer(ev.buf, ev.file) then
+			bigfile.apply_buffer_settings(ev.buf)
+			bigfile.apply_window_settings(vim.api.nvim_get_current_win(), ev.buf)
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufWinEnter" }, {
+	group = bigfile_group,
+	pattern = "*",
+	callback = function(ev)
+		if bigfile.apply_buffer_settings(ev.buf) then
+			bigfile.apply_window_settings(vim.api.nvim_get_current_win(), ev.buf)
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = bigfile_group,
+	pattern = "*",
+	callback = function(ev)
+		if not bigfile.is_large_buffer(ev.buf) then
+			return
+		end
+		local detach = vim.lsp.buf_detach_client or vim.lsp.buf_detach
+		vim.schedule(function()
+			pcall(detach, ev.buf, ev.data.client_id)
+		end)
+	end,
+})
+
 -- autocmd("DiagnosticChanged", {
--- 	group = diagnostic_group,
--- 	callback = function()
--- 		local bufnr = vim.api.nvim_get_current_buf()
--- 		-- Save cursor position
--- 		local cur_pos = vim.api.nvim_win_get_cursor(0)
+--   group = diagnostic_group,
+--   callback = function()
+--     local bufnr = vim.api.nvim_get_current_buf()
+--     -- Save cursor position
+--     local cur_pos = vim.api.nvim_win_get_cursor(0)
 --
--- 		-- Check if there are diagnostics in the current buffer
--- 		local diagnostics = vim.diagnostic.get(bufnr)
--- 		if #diagnostics > 0 then
--- 			-- Silently update quickfix list
--- 			vim.diagnostic.setqflist({ open = false })
--- 		else
--- 			-- Clear quickfix list when no diagnostics
--- 			vim.fn.setqflist({}, "r")
--- 		end
+--     -- Check if there are diagnostics in the current buffer
+--     local diagnostics = vim.diagnostic.get(bufnr)
+--     if #diagnostics > 0 then
+--       -- Silently update quickfix list
+--       vim.diagnostic.setqflist({ open = false })
+--     else
+--       -- Clear quickfix list when no diagnostics
+--       vim.fn.setqflist({}, "r")
+--     end
 --
--- 		-- Restore cursor position
--- 		vim.api.nvim_win_set_cursor(0, cur_pos)
--- 	end,
+--     -- Restore cursor position
+--     vim.api.nvim_win_set_cursor(0, cur_pos)
+--   end,
 -- })
 
 -- change rood directory based on current buffer
@@ -213,27 +252,27 @@ local root_names = { ".git", "Makefile" }
 local root_cache = {}
 
 local set_root = function()
-	-- Get directory path to start search from
-	local path = vim.api.nvim_buf_get_name(0)
-	print(path)
-	if path == "" then
-		return
-	end
-	path = vim.fs.dirname(path)
+  -- Get directory path to start search from
+  local path = vim.api.nvim_buf_get_name(0)
+  print(path)
+  if path == "" then
+    return
+  end
+  path = vim.fs.dirname(path)
 
-	-- Try cache and resort to searching upward for root directory
-	local root = root_cache[path]
-	if root == nil then
-		local root_file = vim.fs.find(root_names, { path = path, upward = true })[1]
-		if root_file == nil then
-			return
-		end
-		root = vim.fs.dirname(root_file)
-		root_cache[path] = root
-	end
+  -- Try cache and resort to searching upward for root directory
+  local root = root_cache[path]
+  if root == nil then
+    local root_file = vim.fs.find(root_names, { path = path, upward = true })[1]
+    if root_file == nil then
+      return
+    end
+    root = vim.fs.dirname(root_file)
+    root_cache[path] = root
+  end
 
-	-- Set current directory
-	vim.fn.chdir(root)
+  -- Set current directory
+  vim.fn.chdir(root)
 end
 
 local root_augroup = vim.api.nvim_create_augroup("MyAutoRoot", {})

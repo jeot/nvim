@@ -17,9 +17,6 @@ return {
 	-- unimpaired.vim: Pairs of handy bracket mappings
 	"tpope/vim-unimpaired",
 
-	-- comment/uncomment
-	{ "numToStr/Comment.nvim", opts = {} },
-
 	-- display sequence keys help
 	{
 		"folke/which-key.nvim",
@@ -73,7 +70,8 @@ return {
 	{
 		"jakemason/ouroboros",
 		config = function()
-			vim.keymap.set("n", "S", "<cmd>Ouroboros<CR>", { silent = true })
+			vim.keymap.set("n", "ss", "<cmd>Ouroboros<CR>", { silent = true })
+			vim.keymap.set("n", "si", "<cmd>Ouroboros<CR>", { silent = true })
 		end,
 	},
 
@@ -86,4 +84,30 @@ return {
 
 	-- Better quickfix window in Neovim, polish old quickfix window
 	{ "kevinhwang91/nvim-bqf", opts = {} },
+
+	--[[
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+			dashboard = { enabled = false },
+			explorer = { enabled = false },
+			indent = { enabled = false },
+			input = { enabled = false },
+			picker = { enabled = false },
+			notifier = { enabled = false },
+			quickfile = { enabled = false },
+			scope = { enabled = false },
+			scroll = { enabled = false },
+			statuscolumn = { enabled = false },
+			words = { enabled = false },
+		},
+	},
+	--]]
 }

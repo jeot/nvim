@@ -8,7 +8,7 @@ vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 8
 --	      ﰴ   ﲒ ﲖ  ﰲ 壟 ﬋     ···␣  󰇘 󰌑𓍯 𓂃 🎀 │
 vim.opt.list = true
-vim.opt.listchars = { tab = "│ ", trail = "·", nbsp = "␣", extends = "󰇘" }
+vim.opt.listchars = { tab = "│ ", trail = " ", nbsp = "␣", extends = "󰇘" }
 -- vim.opt.listchars = { tab = " ", trail = "·", nbsp = "␣", extends = "󰇘" }
 -- vim.opt.listchars = { tab = '• ', trail = '•', nbsp = '+', extends = '»' }
 -- vim.opt.listchars = { tab = ' ', trail = '•', nbsp = '+', extends = '󰇘', eol = '󰌑' }
@@ -88,9 +88,9 @@ vim.opt.showtabline = 1
 vim.opt.clipboard = "unnamedplus"
 -- set powershell for windwos
 -- vim.opt.shell = "powershell"
-vim.opt.shell = "bash"
-vim.opt.shellcmdflag = "-Command"
-vim.opt.shellquote = ""
-vim.opt.shellxquote = ""
-vim.opt.shellredir = "| Out-File -Encoding UTF8 %s"
-vim.opt.shellpipe = "| Out-File -Encoding UTF8 %s"
+vim.opt.shell = "/bin/zsh"
+-- vim.opt.shellcmdflag = "-Command" -- i don't remmember what this was for! bash or powershell!
+-- vim.opt.shellquote = ""
+-- vim.opt.shellxquote = ""
+-- vim.opt.shellredir = "| Out-File -Encoding UTF8 %s"
+-- vim.opt.shellpipe = "| Out-File -Encoding UTF8 %s"

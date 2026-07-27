@@ -58,7 +58,7 @@ return {
 					["h"] = { "close_node", nowait = true },
 					["l"] = { "open", nowait = true },
 					["f"] = { "fuzzy_finder", nowait = true },
-					["s"] = { "filter_on_submit", nowait = true },
+					["s"] = "noop",
 					["v"] = { "system_open", nowait = true },
 					["E"] = { "system_explorer", nowait = true },
 					-- ['E'] = function() vim.api.nvim_exec('Neotree focus filesystem left', true) end,

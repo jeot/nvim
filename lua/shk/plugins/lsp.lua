@@ -1,4 +1,5 @@
 local function lsp_config()
+	local bigfile = require("shk.bigfile")
 	--  This function gets run when an LSP attaches to a particular buffer.
 	--    That is to say, every time a new file is opened that is associated with
 	--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -6,6 +7,14 @@ local function lsp_config()
 	vim.api.nvim_create_autocmd("LspAttach", {
 		group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 		callback = function(event)
+			if bigfile.is_large_buffer(event.buf) then
+				local detach = vim.lsp.buf_detach_client or vim.lsp.buf_detach
+				vim.schedule(function()
+					pcall(detach, event.buf, event.data.client_id)
+				end)
+				return
+			end
+
 			local map = function(keys, func, desc)
 				vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 			end
@@ -87,30 +96,34 @@ local function lsp_config()
 	}
 	--]]
 
-	-- don't show diagnostic in insert mode
-	local default_handler = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-		-- delay update diagnostics
+	-- no diagnostic in insert mode
+	-- 1. global diagnostic config
+	vim.diagnostic.config({
 		update_in_insert = false,
 	})
-	-- this is to not show the diagnostic at all in case of matching!!
+
+	-- ignore some keywords
+	-- 2. override handler (no vim.lsp.with)
+	local orig_handler = vim.lsp.handlers["textDocument/publishDiagnostics"]
+
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = function(err, result, ctx, config)
 		if result and result.diagnostics then
 			local filtered = {}
+
 			for _, diagnostic in ipairs(result.diagnostics) do
-				if
-					diagnostic.message:match("vim.")
-					or diagnostic.message:match("proc-macro")
-					or diagnostic.message:match("E0107")
-					or diagnostic.message:match("PSTR")
-				then
+				local msg = diagnostic.message
+
+				if msg:match("vim%.") or msg:match("proc%-macro") or msg:match("E0107") or msg:match("PSTR") then
 					-- ignore
 				else
 					table.insert(filtered, diagnostic)
 				end
 			end
+
 			result.diagnostics = filtered
 		end
-		default_handler(err, result, ctx, config)
+
+		return orig_handler(err, result, ctx, config)
 	end
 
 	-- LSP servers and clients are able to communicate to each other what features they support.
@@ -239,7 +252,7 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"saghen/blink.cmp",
+			{ "saghen/blink.cmp", version = "1.*" },
 			-- Automatically install LSPs and related tools to stdpath for neovim
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",

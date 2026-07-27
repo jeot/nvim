@@ -1,8 +1,10 @@
 -- tree-sitter and context for neovim
+local bigfile = require("shk.bigfile")
+
 return { -- Highlight, edit, and navigate code
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	main = "nvim-treesitter.configs", -- Sets main module to use for opts
+	-- main = "nvim-treesitter.configs", -- Sets main module to use for opts
 	-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 	opts = {
 		ensure_installed = {
@@ -26,9 +28,16 @@ return { -- Highlight, edit, and navigate code
 			--  If you are experiencing weird indenting issues, add the language to
 			--  the list of additional_vim_regex_highlighting and disabled languages for indent.
 			-- additional_vim_regex_highlighting = { "ruby" },
-			disable = { "txt", "help", "python" },
+			disable = function(lang, buf)
+				return bigfile.is_large_buffer(buf) or lang == "txt" or lang == "help" or lang == "python"
+			end,
 		},
-		indent = { enable = true, disable = { "ruby" } },
+		indent = {
+			enable = true,
+			disable = function(lang, buf)
+				return bigfile.is_large_buffer(buf) or lang == "ruby"
+			end,
+		},
 		keymaps = {
 			init_selection = "<C-space>",
 			node_incremental = "<C-space>",
