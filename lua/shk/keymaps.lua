@@ -177,7 +177,6 @@ nkeymap("-", "<CMD>Oil --float<CR>", "Open parent directory")
 nkeymap("s", "<nop>")
 nkeymap("sp", ":split<cr>")
 nkeymap("sv", ":vsplit<cr>")
-nkeymap("sq", "<c-w>c")
 nkeymap("sc", "<c-w>c")
 nkeymap("so", "<c-w>o")
 nkeymap("sh", "<c-w>h")
@@ -249,23 +248,36 @@ nkeymap("(", "<cmd>lprev<CR>", "Previous item in location list")
 -- nkeymap('{', '?^\\s*{<CR>:nohl<CR>')
 -- nkeymap('}', '/^\\s*}<CR>:nohl<CR>')
 
--- execute command line under cursor
--- nkeymap('<leader>ee', ':silent exe "!" . getline(".")<CR>')
--- nkeymap('<leader>ex', ':exe getline(".")<CR>')
---nkeymap('<leader>et', ':exe "!tmux send -t .+ \'echo " . vim.fn.getline(".") . "\' Enter"<CR>')
---nkeymap('<leader>E', ':exe "!tmux send -t .+ \'" . vim.fn.getline(".") . "\' Enter"<CR>')
+------ Diagnostic keymaps ------
 
--- Diagnostic keymaps
 -- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 -- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic Error messages" })
+-- vim.keymap.set("n", "<leader>dh", vim.diagnostic.hide, { desc = "Hide Diagnostic message" })
+-- vim.keymap.set("n", "<leader>ds", vim.diagnostic.show, { desc = "Show Diagnostic message" })
 vim.keymap.set("n", "<c-p>", vim.diagnostic.goto_prev, { desc = "Go to previous Diagnostic message" })
 vim.keymap.set("n", "<c-n>", vim.diagnostic.goto_next, { desc = "Go to next Diagnostic message" })
-vim.keymap.set("n", "<leader>dh", vim.diagnostic.hide, { desc = "Hide Diagnostic message" })
-vim.keymap.set("n", "<leader>ds", vim.diagnostic.show, { desc = "Show Diagnostic message" })
--- vim.keymap.set("n", "<leader>x", vim.diagnostic.setloclist, { desc = "Open diagnostic Quickfix list" })
--- vim.keymap.set("n", "<leader>x", function()
--- 	vim.cmd("norm mmgg0")
--- 	vim.diagnostic.setloclist({ open = false })
--- 	vim.cmd("norm `m")
--- end, { desc = "Populate diagnostic Quickfix list" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic Error messages" })
+vim.keymap.set("n", "<leader>td", function()
+	local enabled = true
+	local ok_is_enabled, state = pcall(vim.diagnostic.is_enabled)
+	if ok_is_enabled and type(state) == "boolean" then
+		enabled = state
+	elseif vim.g.shk_diagnostics_enabled ~= nil then
+		enabled = vim.g.shk_diagnostics_enabled
+	end
+
+	local next_state = not enabled
+
+	-- Newer Neovim accepts boolean; fallback keeps compatibility with older versions.
+	local ok_toggle = pcall(vim.diagnostic.enable, next_state)
+	if not ok_toggle then
+		if next_state then
+			pcall(vim.diagnostic.enable)
+		else
+			pcall(vim.diagnostic.disable)
+		end
+	end
+
+	vim.g.shk_diagnostics_enabled = next_state
+	vim.notify(("Diagnostics %s"):format(next_state and "enabled" or "disabled"), vim.log.levels.INFO)
+end, { desc = "Toggle diagnostics globally" })

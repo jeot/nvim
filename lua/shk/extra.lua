@@ -156,7 +156,7 @@ local function toggle_diffmode()
 		print("diff mode off")
 	end
 end
-vim.keymap.set("n", "<leader>td", toggle_diffmode, {})
+vim.keymap.set("n", "<leader>tD", toggle_diffmode, {})
 
 vim.cmd([[
   :hi link CurSearch IncSearch
