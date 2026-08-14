@@ -1,5 +1,28 @@
 local function config()
 	local actions = require("telescope.actions")
+	local function delete_all_clean_buffers(prompt_bufnr)
+		actions.close(prompt_bufnr)
+
+		local deleted = 0
+		for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+			if vim.api.nvim_buf_is_valid(bufnr) and vim.fn.buflisted(bufnr) == 1 then
+				local is_file_buffer = vim.bo[bufnr].buftype == ""
+				local is_modified = vim.bo[bufnr].modified
+				local name = vim.api.nvim_buf_get_name(bufnr)
+				local is_unnamed = name == ""
+				local is_new_file = (not is_unnamed) and vim.fn.filereadable(name) == 0 and vim.fn.isdirectory(name) == 0
+
+				if is_file_buffer and not is_modified and not is_unnamed and not is_new_file then
+					local ok = pcall(vim.api.nvim_buf_delete, bufnr, {})
+					if ok then
+						deleted = deleted + 1
+					end
+				end
+			end
+		end
+
+		vim.notify(("Closed %d unmodified buffers"):format(deleted), vim.log.levels.INFO, { title = "Telescope Buffers" })
+	end
 
 	require("telescope").setup({
 		extensions = {
@@ -39,6 +62,10 @@ local function config()
 				mappings = {
 					i = {
 						["<c-x>"] = "delete_buffer",
+						["<c-a>"] = delete_all_clean_buffers,
+					},
+					n = {
+						["<c-a>"] = delete_all_clean_buffers,
 					},
 				},
 			},

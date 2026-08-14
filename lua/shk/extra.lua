@@ -164,7 +164,7 @@ vim.cmd([[
 
 -- add some colorschemes as plugins
 local function fix_bg_colors()
-	print("ok")
+	print("Welcome, shk")
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
 	vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
